@@ -17,12 +17,14 @@ import javafx.stage.Stage;
  */
 public class Slowlife extends Application {
     
+    public static Stage stage=null;
+    
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
-        Scene scene = new Scene(root);
-        
+    public void start(Stage s) throws Exception {
+        stage=s;
+        stage.setTitle("SlowLife");
+        Parent root = FXMLLoader.load(getClass().getResource("gui/Home.fxml"));
+        Scene scene=new Scene(root, 1200, 700);
         stage.setScene(scene);
         stage.show();
     }
