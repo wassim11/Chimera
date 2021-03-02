@@ -37,5 +37,13 @@ public class HomeController implements Initializable {
         Scene scene=new Scene(root, Slowlife.stage.getScene().getWidth(), Slowlife.stage.getScene().getHeight());
         Slowlife.stage.setScene(scene);
     }
+
+    @FXML
+    private void afficherActivite(MouseEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("evenements/AfficherActivites.fxml"));
+        Scene scene=new Scene(root, Slowlife.stage.getScene().getWidth(), Slowlife.stage.getScene().getHeight());
+        Slowlife.stage.setScene(scene);
+        
+    }
     
 }

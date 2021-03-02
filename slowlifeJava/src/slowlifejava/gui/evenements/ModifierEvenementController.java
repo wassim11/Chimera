@@ -19,6 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import slowlifejava.Slowlife;
+import slowlifejava.entities.evenements.Activite;
 import slowlifejava.entities.evenements.Evenement;
 import slowlifejava.services.evenements.EvenementService;
 
@@ -83,6 +84,10 @@ public class ModifierEvenementController implements Initializable {
         dateFin.setValue(e.getDateFin().toLocalDate());
         typeEvent.setText(e.getType());
         System.out.println(e.getIdEvent());
+    }
+
+    void setData(Activite a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
