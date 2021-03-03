@@ -93,6 +93,9 @@ public class AfficherEvenementsController implements Initializable {
     }
 
     @FXML
-    private void retour(MouseEvent event) {
+    private void retour(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/slowlifejava/gui/Home.fxml"));
+        Scene scene=new Scene(root, Slowlife.stage.getScene().getWidth(), Slowlife.stage.getScene().getHeight());
+        Slowlife.stage.setScene(scene);
     }
 }

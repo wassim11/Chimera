@@ -23,7 +23,7 @@ public class Slowlife extends Application {
     public void start(Stage s) throws Exception {
         stage=s;
         stage.setTitle("SlowLife");
-        Parent root = FXMLLoader.load(getClass().getResource("gui/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/slowlifejava/gui/Home.fxml"));
         Scene scene=new Scene(root, 1200, 700);
         stage.setScene(scene);
         stage.show();

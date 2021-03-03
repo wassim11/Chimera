@@ -50,7 +50,6 @@ public class ModifierActiviteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         idEventAct.getItems().addAll(new EvenementService().getAll());
-        //dureeAct.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, 1));
     }    
 
     @FXML
@@ -79,13 +78,12 @@ public class ModifierActiviteController implements Initializable {
     
     public void setData(Activite ac) {
         a=ac;
-        Evenement ev = idEventAct.getItems().stream().filter(e->e.getIdEvent()==a.getIdEvent()).findFirst().get();
-        idEventAct.getSelectionModel().select(ev);//selectionner l'objet
+        Evenement ev = idEventAct.getItems().stream().filter(e->e.getIdEvent()==a.getIdEvent()).findFirst().get();//recuperation de l'evenement associe à l'activite
+        idEventAct.getSelectionModel().select(ev);//selection de l'evenement associe à l'activite
         nomAct.setText(a.getNom());
         typeAct.setText(a.getType());
         descAct.setText(a.getDescription());
-        //dureeAct.getValueFactory().setValue(Integer.parseInt(String.valueOf(a.getDuree())));
-       dureeAct.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, a.getDuree()));//duree men activite a
+        dureeAct.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, Integer.MAX_VALUE, a.getDuree()));//duree men activite a
     }
     
 }

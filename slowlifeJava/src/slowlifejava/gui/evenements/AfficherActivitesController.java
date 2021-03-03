@@ -56,14 +56,14 @@ public class AfficherActivitesController implements Initializable {
         descCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         dureeCol.setCellValueFactory(new PropertyValueFactory<>("duree"));
         ActiviteService as=new ActiviteService();
-        ObservableList<Activite> liste = FXCollections.observableArrayList(as.getAll());
+        ObservableList<Activite> liste = FXCollections.observableArrayList(as.getAll());//observable list
         activiteTable.setItems(liste);
         // TODO
     }    
 
     @FXML
     private void supprimerActivite(MouseEvent event) {
-            Activite a =activiteTable.getSelectionModel().getSelectedItem();
+        Activite a =activiteTable.getSelectionModel().getSelectedItem();
         if (a!=null) {
             new ActiviteService().supprimer(a);
             activiteTable.getItems().remove(a);
@@ -91,7 +91,10 @@ public class AfficherActivitesController implements Initializable {
     }
 
     @FXML
-    private void retourActivite(MouseEvent event) {
+    private void retourActivite(MouseEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/slowlifejava/gui/Home.fxml"));
+        Scene scene=new Scene(root, Slowlife.stage.getScene().getWidth(), Slowlife.stage.getScene().getHeight());
+        Slowlife.stage.setScene(scene);
     }
     
 }

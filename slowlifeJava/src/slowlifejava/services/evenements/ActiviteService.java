@@ -44,7 +44,7 @@ public class ActiviteService {
     }
     
     
-        public ArrayList<Activite> getAll(){
+    public ArrayList<Activite> getAll(){
         ArrayList<Activite> activites = new ArrayList<>();
         try {
             String request="SELECT a.id, a.idEvent, a.nom, a.type, a.Description, a.duree, e.nom FROM activite a INNER JOIN evenement e WHERE a.idEvent = e.id";
@@ -67,7 +67,7 @@ public class ActiviteService {
         return activites;
     }
         
-            public void supprimer(Activite a) {
+    public void supprimer(Activite a) {
         try {
             String request="DELETE FROM activite WHERE id = ?";
             PreparedStatement pre = cnx.prepareStatement(request);
@@ -78,15 +78,16 @@ public class ActiviteService {
         }
     }
             
-                public void modifier (Activite a){
+    public void modifier (Activite a){
         try {
-            String request="UPDATE activite SET idEvent = ? , nom = ? , type = ? , Description = ? , duree = ?";
+            String request="UPDATE activite SET idEvent = ? , nom = ? , type = ? , Description = ? , duree = ? WHERE id= ?";
             PreparedStatement pre=cnx.prepareStatement(request);
             pre.setLong(1, a.getIdEvent());
             pre.setString(2, a.getNom());
             pre.setString(3, a.getType());            
             pre.setString(4, a.getDescription());
             pre.setLong(5, a.getDuree());
+            pre.setLong(6,a.getIdActivite());
             pre.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
