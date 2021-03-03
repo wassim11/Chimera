@@ -57,7 +57,7 @@ public class ActiviteService {
                 a.setNom(result.getString("a.nom"));
                 a.setType(result.getString("a.type"));
                 a.setDescription(result.getString("a.Description"));
-                a.setDuree(result.getLong("a.duree"));
+                a.setDuree(result.getInt("a.duree"));
                 a.setNomEvent(result.getString("e.nom"));
                 activites.add(a);
             }

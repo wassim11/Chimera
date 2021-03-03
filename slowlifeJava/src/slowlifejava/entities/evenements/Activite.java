@@ -10,16 +10,17 @@ package slowlifejava.entities.evenements;
  * @author Ahmed Ezzine
  */
 public class Activite {
-    private long idActivite ;
-    private long idEvent ;
-    private String nom ;
-    private String type ;
-    private String description ;
-    private long duree ;
-    
+
+    private long idActivite;
+    private long idEvent;
+    private String nom;
+    private String type;
+    private String description;
+    private int duree;
+
     private String nomEvent;
 
-    public Activite(long idActivite, long idEvent, String nom, String type, String description, long duree) {
+    public Activite(long idActivite, long idEvent, String nom, String type, String description, int duree) {
         this.idActivite = idActivite;
         this.idEvent = idEvent;
         this.nom = nom;
@@ -73,11 +74,11 @@ public class Activite {
         this.description = description;
     }
 
-    public long getDuree() {
+    public int getDuree() {
         return duree;
     }
 
-    public void setDuree(long duree) {
+    public void setDuree(int duree) {
         this.duree = duree;
     }
 
@@ -88,4 +89,10 @@ public class Activite {
     public void setNomEvent(String nomEvent) {
         this.nomEvent = nomEvent;
     }
+
+    @Override
+    public String toString() {
+        return "Activite{" + "idActivite=" + idActivite + ", idEvent=" + idEvent + ", nom=" + nom + ", type=" + type + ", description=" + description + ", duree=" + duree + ", nomEvent=" + nomEvent + '}';
+    }
+
 }

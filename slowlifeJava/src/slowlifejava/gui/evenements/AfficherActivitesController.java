@@ -42,7 +42,7 @@ public class AfficherActivitesController implements Initializable {
     @FXML
     private TableColumn<Activite, String> descCol;
     @FXML
-    private TableColumn<Activite, Long> dureeCol;
+    private TableColumn<Activite, Integer> dureeCol;
 
     /**
      * Initializes the controller class.
