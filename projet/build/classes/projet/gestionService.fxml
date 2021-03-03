@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="r" prefHeight="660.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.GestionServiceController">
+   <children>
+      <AnchorPane fx:id="titre" layoutX="36.0" layoutY="12.0" prefHeight="77.0" prefWidth="1150.0" AnchorPane.bottomAnchor="573.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="27.0" layoutY="4.0" prefHeight="65.0" prefWidth="629.0" text="Gestion des services:" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="45.0" layoutY="78.0" prefHeight="572.0" prefWidth="424.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Label layoutX="62.0" layoutY="84.0" text="Nom" />
+            <Label layoutX="50.0" layoutY="241.0" text="Description" />
+            <Label layoutX="51.0" layoutY="319.0" text="Type" />
+            <TextField fx:id="tfnomservice" layoutX="171.0" layoutY="88.0" onKeyTyped="#cntsNomService" />
+            <Button fx:id="ajouterservice" layoutX="23.0" layoutY="454.0" mnemonicParsing="false" onAction="#btnajouterService" text="Ajouter" />
+            <Button fx:id="supprimerservice" layoutX="328.0" layoutY="453.0" mnemonicParsing="false" onAction="#btnsupprimerService" text="Supprimer" />
+            <Button fx:id="modifierservice" layoutX="77.0" layoutY="515.0" mnemonicParsing="false" onAction="#btnmodifierService" text="Modifier" />
+            <Button fx:id="enregistrermodservice" layoutX="223.0" layoutY="516.0" mnemonicParsing="false" onAction="#btnenregistrermodService" text="Save changes" />
+            <Button fx:id="annulermodservice" layoutX="339.0" layoutY="516.0" mnemonicParsing="false" onAction="#btnannulermodService" text="annuler" />
+            <TextArea fx:id="tfdescservice" layoutX="174.0" layoutY="212.0" onKeyTyped="#controlesdescservice" prefHeight="78.0" prefWidth="191.0" />
+            <Label fx:id="cntdescservice" layoutX="182.0" layoutY="296.0" prefHeight="17.0" prefWidth="176.0" />
+            <Label fx:id="cntnomservice" layoutX="171.0" layoutY="148.0" prefHeight="17.0" prefWidth="176.0" />
+            <ComboBox fx:id="cbtypeservice" layoutX="184.0" layoutY="323.0" prefWidth="150.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="affichage" layoutX="550.0" layoutY="74.0" prefHeight="586.0" prefWidth="800.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <TableView fx:id="tableService" layoutX="-1.0" layoutY="2.0" prefHeight="584.0" prefWidth="794.0" AnchorPane.rightAnchor="7.0">
+               <columns>
+                  <TableColumn fx:id="colIdservice" prefWidth="68.33334350585938" text="ID" />
+                  <TableColumn fx:id="colnomservice" prefWidth="94.5" text="Nom" />
+                  <TableColumn fx:id="coltypeservice" prefWidth="115.0" text="Type" />
+                  <TableColumn fx:id="coldescriptionservice" prefWidth="407.21002197265625" text="Description" />
+                  <TableColumn prefWidth="105.7900390625" text="Prix" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

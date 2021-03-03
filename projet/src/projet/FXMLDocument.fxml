@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="r" prefHeight="660.0" prefWidth="1300.0" stylesheets="@../../../../xamppfiles/htdocs/projet/src/utils/centre.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.FXMLDocumentController">
+   <children>
+      <AnchorPane fx:id="titre" layoutX="36.0" layoutY="12.0" prefHeight="77.0" prefWidth="1150.0" AnchorPane.bottomAnchor="573.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label id="titre" layoutX="27.0" layoutY="4.0" prefHeight="65.0" prefWidth="629.0" text="Gestion des centres:">
+               <font>
+                  <Font name="Farisi Regular" size="36.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="45.0" layoutY="78.0" prefHeight="572.0" prefWidth="424.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Label layoutX="62.0" layoutY="84.0" text="Nom">
+               <font>
+                  <Font name="Baghdad Regular" size="13.0" />
+               </font></Label>
+            <Label layoutX="62.0" layoutY="154.0" text="Adresse" />
+            <Label layoutX="50.0" layoutY="241.0" text="Description" />
+            <Label layoutX="51.0" layoutY="319.0" text="URL image" />
+            <TextField fx:id="tfnomcentre" layoutX="171.0" layoutY="88.0" />
+            <TextField fx:id="tflieucentre" layoutX="182.0" layoutY="159.0" onKeyTyped="#cntsadressecentre" />
+            <TextField fx:id="tfimagecentre" layoutX="182.0" layoutY="323.0" onKeyTyped="#cntsimagecentre" />
+            <Button fx:id="ajoutercentre" layoutX="23.0" layoutY="454.0" mnemonicParsing="false" onAction="#btnajouterCentre" text="Ajouter" />
+            <Button fx:id="supprimercentre" layoutX="328.0" layoutY="453.0" mnemonicParsing="false" onAction="#btnsupprimercentre" text="Supprimer" />
+            <Button fx:id="modifiercentre" layoutX="77.0" layoutY="515.0" mnemonicParsing="false" onAction="#btnmodifiercentre" text="Modifier" />
+            <Button fx:id="enregistrermodcentre" layoutX="223.0" layoutY="516.0" mnemonicParsing="false" onAction="#btnenregistrermodcentre" text="Save changes" />
+            <Button fx:id="annulermodcentre" layoutX="345.0" layoutY="515.0" mnemonicParsing="false" onAction="#btnannulermodcentre" text="annuler" />
+            <TextArea fx:id="tfdesccentre" layoutX="174.0" layoutY="212.0" onKeyTyped="#controlesdesccentre" prefHeight="78.0" prefWidth="191.0" />
+            <ChoiceBox fx:id="cbtypecentre" layoutX="195.0" layoutY="382.0" prefWidth="150.0" />
+            <Label layoutX="62.0" layoutY="387.0" text="Type">
+               <font>
+                  <Font name="Apple Color Emoji" size="13.0" />
+               </font></Label>
+            <Label id="c2" fx:id="cntdesccentre" layoutX="182.0" layoutY="296.0" prefHeight="17.0" prefWidth="176.0" />
+            <Label id="c1" fx:id="cntadressecentre" layoutX="184.0" layoutY="190.0" prefHeight="17.0" prefWidth="176.0" />
+            <Label id="c3" fx:id="cntimagecentre" layoutX="184.0" layoutY="358.0" prefHeight="17.0" prefWidth="237.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="affichage" layoutX="550.0" layoutY="74.0" prefHeight="586.0" prefWidth="800.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <TableView fx:id="tableCentre" layoutX="-1.0" layoutY="2.0" prefHeight="584.0" prefWidth="794.0" AnchorPane.rightAnchor="7.0">
+              <columns>
+                <TableColumn fx:id="colIdcentre" prefWidth="68.33334350585938" text="ID" />
+                  <TableColumn fx:id="colnomcentre" prefWidth="94.5" text="Nom" />
+                  <TableColumn fx:id="coltypecentre" prefWidth="115.0" text="Type" />
+                  <TableColumn fx:id="coladressecentre" prefWidth="186.0" text="Adresse" />
+                  <TableColumn fx:id="coldescriptioncentre" prefWidth="217.5" text="Description" />
+                  <TableColumn fx:id="coldetailcentre" prefWidth="111.5" text="Details" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
