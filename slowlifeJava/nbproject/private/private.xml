@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/services/evenements/EvenementService.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/Slowlife.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/entities/evenements/Evenement.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/gui/evenements/AfficherEvenementsController.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/entities/publications/Publication.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/services/publications/CommentaireService.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/services/publications/PublicationService.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/gui/evenements/ModifierEvenementController.java</file>
+            <file>file:/C:/Users/Wassim/Documents/NetBeansProjects/Chimera/slowlifeJava/src/slowlifejava/gui/publications/ModifierPublicationController.java</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.publications.AfficherPublicationsController">
+   <children>
+      <TableView fx:id="pubTab" prefHeight="322.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="typePub" prefWidth="75.0" text="Type" />
+          <TableColumn fx:id="urlPub" prefWidth="75.0" text="URL" />
+            <TableColumn fx:id="descPub" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="idCoachPub" prefWidth="75.0" text="idCoach" />
+        </columns>
+      </TableView>
+      <Button layoutX="331.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#ajouterPub" text="Ajouter" />
+      <Button layoutX="404.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#modifierPub" text="Modifier" />
+      <Button layoutX="484.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#supprimerPub" text="Supprimer" />
+      <Button layoutX="241.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#CommenterPub" text="Commenter" />
+   </children>
+</AnchorPane>

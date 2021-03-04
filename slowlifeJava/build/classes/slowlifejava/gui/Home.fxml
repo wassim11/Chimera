@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.HomeController">
+   <children>
+      <Button layoutX="54.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#afficherEvenement" text="Afficher Evenements" />
+      <Button layoutX="416.0" layoutY="39.0" mnemonicParsing="false" onMouseClicked="#afficherActivite" text="Afficher Activités" />
+      <Button layoutX="71.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#afficherPub" text="Afficher publications" />
+   </children>
+</AnchorPane>

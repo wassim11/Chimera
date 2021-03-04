@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="slowlifejava.gui.publications.AfficherCommentairesController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="ComTab" layoutX="-7.0" layoutY="14.0" prefHeight="322.0" prefWidth="600.0">
+               <columns>
+                  <TableColumn fx:id="DateCom" prefWidth="102.40002727508545" text="date" />
+                  <TableColumn fx:id="HeureCom" prefWidth="96.79998779296875" text="heure" />
+                  <TableColumn fx:id="ConCom" prefWidth="383.9999237060547" text="Contenu" />
+               </columns>
+            </TableView>
+            <Button layoutX="404.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#modifierCom" text="Modifier" />
+            <Button layoutX="484.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#supprimerCom" text="Supprimer" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
