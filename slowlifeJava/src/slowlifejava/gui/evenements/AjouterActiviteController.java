@@ -19,7 +19,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import slowlifejava.Slowlife;
+import slowlifejava.tests.Slowlife;
 import slowlifejava.entities.evenements.Activite;
 import slowlifejava.entities.evenements.Evenement;
 import slowlifejava.services.evenements.ActiviteService;

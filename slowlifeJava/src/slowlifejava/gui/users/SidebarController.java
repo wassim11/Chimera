@@ -127,7 +127,7 @@ public class SidebarController implements Initializable {
 
     @FXML
     private void gererUser(ActionEvent event) throws IOException {
-        LoadPage("/gui/users/ListeUtilisateurs");
+        LoadPage("/slowlifejava/gui/users/ListeUtilisateurs");
     }
 
     private void LoadPage(String page) {
@@ -142,25 +142,25 @@ public class SidebarController implements Initializable {
 
     @FXML
     private void GererProfile(ActionEvent event) throws SQLException {
-        LoadPage("/gui/users/ProfileAdmin");
+        LoadPage("/slowlifejava/gui/users/ProfileAdmin");
     }
 
     @FXML
     private void logout(ActionEvent event) throws IOException {
         NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
-        nav.navigate(event, "Login", "/gui/users/Login.fxml");
+        nav.navigate(event, "Login", "/slowlifejava/gui/users/Login.fxml");
         UserService us = new UserService();
         us.loggedOut();
     }
 
     @FXML
     private void statistic(ActionEvent event) {
-        LoadPage("/gui/users/Statistique");
+        LoadPage("/slowlifejava/gui/users/Statistique");
     }
 
     @FXML
     private void mdp(ActionEvent event) {
-        LoadPage("/gui/users/ChangerMDP");
+        LoadPage("/slowlifejava/gui/users/ChangerMDP");
     }
 
 }

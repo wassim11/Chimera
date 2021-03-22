@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
                 if (u != null && BCrypt.checkpw(mdp_login_txt.getText(), u.getMdp())) {
                     us.loggedIn(u);
                     NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
-                    nav.navigate(event, "Sidebar", "/gui/users/Sidebar.fxml");
+                    nav.navigate(event, "Sidebar", "/slowlifejava/gui/users/Sidebar.fxml");
                     System.out.println(u.getPhoto());
                 } else {
                     Alert alert2 = new Alert(Alert.AlertType.WARNING);
@@ -111,13 +111,13 @@ public class LoginController implements Initializable {
     @FXML
     private void back(ActionEvent event) throws IOException {
         NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
-        nav.navigate(event, "Accueil", "/gui/users/AccueilPage.fxml");
+        nav.navigate(event, "Accueil", "/slowlifejava/gui/users/AccueilPage.fxml");
     }
 
     @FXML
     private void OnOublie(ActionEvent event) throws IOException {
         NavigationEntreInterfaces nav = new NavigationEntreInterfaces();
-        nav.navigate(event, "Accueil", "/gui/users/RecupererMDP.fxml");
+        nav.navigate(event, "RecupérerMDP", "/slowlifejava/gui/users/RecupererMDP.fxml");
 
     }
 

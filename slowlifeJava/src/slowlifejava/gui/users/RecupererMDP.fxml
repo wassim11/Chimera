@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="467.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.users.RecupererMDPController">
+<AnchorPane id="AnchorPane" prefHeight="467.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.users.RecupererMDPController">
    <children>
       <HBox prefHeight="467.0" prefWidth="204.0" style="-fx-background-color: #3CB371;" />
       <ImageView fitHeight="133.0" fitWidth="148.0" layoutX="37.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">

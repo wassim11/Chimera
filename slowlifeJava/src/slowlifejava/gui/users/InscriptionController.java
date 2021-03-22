@@ -233,7 +233,7 @@ public class InscriptionController implements Initializable {
     }
     private void sendCode() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/users/ConfimerCompte.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/slowlifejava/gui/users/ConfimerCompte.fxml"));
             Parent root = (Parent) loader.load();
             ConfimerCompteController cc = loader.getController();
             cc.getCode(code);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slowlifejava;
+package slowlifejava.tests;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,15 +20,15 @@ public class Slowlife extends Application {
     public static Stage stage = null;
 
     @Override
-    public void start(Stage s) throws Exception {
+    public void start(Stage stage) throws Exception {
 //        stage=s;
 //        stage.setTitle("SlowLife");
 //        
-//        Parent root = FXMLLoader.load(getClass().getResource("/slowlifejava/gui/Home.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/slowlifejava/gui/users/AccueilPage.fxml"));
 //        Scene scene=new Scene(root, 1200, 700);
 //        stage.setScene(scene);
 //        stage.show();
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/users/AccueilPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/slowlifejava/gui/users/AccueilPage.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

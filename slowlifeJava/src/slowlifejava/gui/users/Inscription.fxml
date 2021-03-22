@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.users.InscriptionController">
+<AnchorPane id="AnchorPane" prefHeight="834.0" prefWidth="1142.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.users.InscriptionController">
    <children>
       <Label layoutX="354.0" layoutY="184.0" text="Vous voulez vous inscrire en tant que :" textFill="#afb215">
          <font>

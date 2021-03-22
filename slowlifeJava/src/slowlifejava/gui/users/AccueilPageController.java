@@ -39,13 +39,13 @@ public class AccueilPageController implements Initializable {
     @FXML
     private void pageInscription(ActionEvent event) throws IOException {
         NavigationEntreInterfaces nav= new NavigationEntreInterfaces();
-            nav.navigate(event, "Inscription", "/gui/users/Inscription.fxml");
+            nav.navigate(event, "Inscription", "/slowlifejava/gui/users/Inscription.fxml");
     }
 
     @FXML
     private void pageConnexion(ActionEvent event) throws IOException {
         NavigationEntreInterfaces nav= new NavigationEntreInterfaces();
-            nav.navigate(event, "Login", "/gui/users/Login.fxml");
+            nav.navigate(event, "Login", "/slowlifejava/gui/users/Login.fxml");
     }
     
 }

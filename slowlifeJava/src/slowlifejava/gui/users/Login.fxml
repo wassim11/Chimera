@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.users.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="542.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.users.LoginController">
    <children>
       <HBox prefHeight="542.0" prefWidth="204.0" style="-fx-background-color: #3CB371;" />
       <Button fx:id="back_btn" layoutY="462.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #00000000;" text="   ">

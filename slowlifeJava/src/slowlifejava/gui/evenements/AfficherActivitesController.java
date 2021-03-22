@@ -20,7 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import slowlifejava.Slowlife;
+import slowlifejava.tests.Slowlife;
 import slowlifejava.entities.evenements.Activite;
 import slowlifejava.services.evenements.ActiviteService;
 
