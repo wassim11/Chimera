@@ -94,4 +94,26 @@ public class ActiviteService {
         }
     }
     
+    public ArrayList<Activite> getAllParEvenement(long idEvent) {
+        ArrayList<Activite> activites = new ArrayList<>();
+        try {
+            String request="SELECT id, idEvent, nom, type, Description, duree FROM activite WHERE idEvent = "+idEvent;
+            Statement ste=cnx.createStatement();
+            ResultSet result = ste.executeQuery(request);
+            while (result.next()) {
+                Activite a = new Activite();
+                a.setIdActivite(result.getLong("id"));
+                a.setIdEvent(result.getLong("idEvent"));
+                a.setNom(result.getString("nom"));
+                a.setType(result.getString("type"));
+                a.setDescription(result.getString("Description"));
+                a.setDuree(result.getInt("duree"));
+                a.setNomEvent(result.getString("nom"));
+                activites.add(a);
+            }
+        } catch(SQLException ex) {
+            System.out.println(ex);
+        }
+        return activites;
+    }
 }

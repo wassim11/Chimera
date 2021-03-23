@@ -6,9 +6,9 @@
 package slowlifejava.gui.users;
 
 import entities.users.Utilisateur;
-import services.users.UserService;
-import utils.users.BCrypt;
-import utils.users.NavigationEntreInterfaces;
+import slowlifejava.services.users.UserService;
+import slowlifejava.utils.users.BCrypt;
+import slowlifejava.utils.users.NavigationEntreInterfaces;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

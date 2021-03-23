@@ -5,7 +5,7 @@
  */
 package slowlifejava.gui.users;
 
-import utils.users.NavigationEntreInterfaces;
+import slowlifejava.utils.users.NavigationEntreInterfaces;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

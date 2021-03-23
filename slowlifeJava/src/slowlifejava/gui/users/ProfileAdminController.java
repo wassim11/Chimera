@@ -47,15 +47,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
-import services.users.AdminService;
-import services.users.ClientService;
-import services.users.CoachService;
-import services.users.UserService;
+import slowlifejava.services.users.AdminService;
+import slowlifejava.services.users.ClientService;
+import slowlifejava.services.users.CoachService;
+import slowlifejava.services.users.UserService;
 import slowlifejava.utils.SlowlifeDB;
-import utils.users.Mailing;
+import slowlifejava.utils.users.Mailing;
 
-import utils.users.NavigationEntreInterfaces;
-import static utils.users.PatternEmail.validate;
+import slowlifejava.utils.users.NavigationEntreInterfaces;
+import static slowlifejava.utils.users.PatternEmail.validate;
 
 /**
  * FXML Controller class

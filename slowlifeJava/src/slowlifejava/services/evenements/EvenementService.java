@@ -92,4 +92,27 @@ public class EvenementService {
             System.out.println(ex);
         }
     }
+    
+    public ArrayList<Evenement> getAllTrier(String recherche) {
+        ArrayList<Evenement> evenements = new ArrayList<>();
+        try {
+            String request="SELECT * FROM evenement WHERE nom LIKE '%"+recherche+"%'";
+            Statement ste=cnx.createStatement();
+            ResultSet result = ste.executeQuery(request);
+            while (result.next()) {
+                Evenement e = new Evenement();
+                e.setIdEvent(result.getLong("id"));
+                e.setNom(result.getString("nom"));
+                e.setLieu(result.getString("lieu"));
+                e.setType(result.getString("type"));
+                e.setDescription(result.getString("Description"));
+                e.setDateDeb(result.getDate("date_debut"));
+                e.setDateFin(result.getDate("date_fin"));
+                evenements.add(e);
+            }
+        } catch(SQLException ex) {
+            System.out.println(ex);
+        }
+        return evenements;
+    }
 }

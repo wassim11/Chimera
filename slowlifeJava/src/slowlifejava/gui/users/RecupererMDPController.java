@@ -6,11 +6,11 @@
 package slowlifejava.gui.users;
 
 import entities.users.Utilisateur;
-import services.users.UserService;
-import utils.users.BCrypt;
-import utils.users.Mailing;
-import utils.users.NavigationEntreInterfaces;
-import static utils.users.PatternEmail.validate;
+import slowlifejava.services.users.UserService;
+import slowlifejava.utils.users.BCrypt;
+import slowlifejava.utils.users.Mailing;
+import slowlifejava.utils.users.NavigationEntreInterfaces;
+import static slowlifejava.utils.users.PatternEmail.validate;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

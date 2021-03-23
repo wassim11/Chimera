@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package services.users;
+package slowlifejava.services.users;
 
 import entities.users.Coach;
 import entities.users.Utilisateur;
 import java.sql.Date;
-import utils.users.BCrypt;
+import slowlifejava.utils.users.BCrypt;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

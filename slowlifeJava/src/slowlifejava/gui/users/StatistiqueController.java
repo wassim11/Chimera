@@ -29,7 +29,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import services.users.UserService;
+import slowlifejava.services.users.UserService;
 import slowlifejava.utils.SlowlifeDB;
 
 

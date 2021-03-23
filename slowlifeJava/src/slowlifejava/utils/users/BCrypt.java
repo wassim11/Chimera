@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils.users;
+package slowlifejava.utils.users;
 
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //

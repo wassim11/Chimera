@@ -2,13 +2,18 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.evenements.AfficherEvenementsController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.evenements.AfficherEvenementsController">
    <center>
-      <TableView fx:id="eventTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="eventTable" onMouseClicked="#afficherActivite" prefHeight="329.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="nomCol" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="lieuCol" prefWidth="75.0" text="Lieu" />
@@ -20,13 +25,64 @@
       </TableView>
    </center>
    <bottom>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ButtonBar prefHeight="40.0" prefWidth="874.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" onMouseClicked="#supprimerEvenement" text="Supprimer" />
-            <Button mnemonicParsing="false" onMouseClicked="#ajouterEvenement" text="Ajouter" />
-            <Button mnemonicParsing="false" onMouseClicked="#modifierEvenement" text="Modifier" />
-            <Button mnemonicParsing="false" onMouseClicked="#retour" text="Retour" />
+          <Button mnemonicParsing="false" onMouseClicked="#supprimerEvenement" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="53.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/deleteEvent.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#ajouterEvenement" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="59.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/AjouterEvent.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#modifierEvenement" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/updateEvent.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#retour" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="59.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/retour.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
         </buttons>
       </ButtonBar>
    </bottom>
+   <top>
+      <HBox prefHeight="18.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="56.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imageSideBar/recherche.png" />
+               </image>
+            </ImageView>
+            <Label text="       " />
+            <TextField fx:id="recherche" onKeyPressed="#trier" />
+         </children>
+      </HBox>
+   </top>
+   <right>
+      <TableView fx:id="activiteTable" prefHeight="464.0" prefWidth="369.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="nomAct" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="typeAct" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="descAct" prefWidth="116.0" text="Description" />
+            <TableColumn fx:id="dureeAct" prefWidth="98.0" text="Durée" />
+        </columns>
+      </TableView>
+   </right>
 </BorderPane>

@@ -7,12 +7,14 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefHeight="405.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.evenements.ModifierActiviteController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.evenements.ModifierActiviteController">
    <center>
       <GridPane prefHeight="350.0" prefWidth="608.0" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -32,7 +34,7 @@
             <Label text="Nom" GridPane.rowIndex="1" />
             <Label text="Type" GridPane.rowIndex="2" />
             <Label text="Description" GridPane.rowIndex="3" />
-            <Label text="Durée" GridPane.rowIndex="4" />
+            <Label text="Durée (en minutes)" GridPane.rowIndex="4" />
             <TextArea fx:id="descAct" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="nomAct" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="typeAct" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -44,8 +46,22 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
-            <Button mnemonicParsing="false" onMouseClicked="#modifierActivite" text="Modifier" />
-            <Button mnemonicParsing="false" onMouseClicked="#retour" text="Retour" />
+            <Button mnemonicParsing="false" onMouseClicked="#modifierActivite" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/updateEvent.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#retour" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="66.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/retour.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </buttons>
       </ButtonBar>
    </bottom>

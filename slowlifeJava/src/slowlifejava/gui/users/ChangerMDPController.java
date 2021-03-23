@@ -7,8 +7,8 @@ package slowlifejava.gui.users;
 
 
 import java.io.IOException;
-import services.users.UserService;
-import static utils.users.PatternEmail.validate;
+import slowlifejava.services.users.UserService;
+import static slowlifejava.utils.users.PatternEmail.validate;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -19,7 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import utils.users.NavigationEntreInterfaces;
+import slowlifejava.utils.users.NavigationEntreInterfaces;
 
 /**
  * FXML Controller class

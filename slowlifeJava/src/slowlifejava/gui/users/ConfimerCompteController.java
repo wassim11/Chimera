@@ -7,9 +7,9 @@ package slowlifejava.gui.users;
 
 import entities.users.Client;
 import entities.users.Coach;
-import services.users.ClientService;
-import services.users.CoachService;
-import utils.users.NavigationEntreInterfaces;
+import slowlifejava.services.users.ClientService;
+import slowlifejava.services.users.CoachService;
+import slowlifejava.utils.users.NavigationEntreInterfaces;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;

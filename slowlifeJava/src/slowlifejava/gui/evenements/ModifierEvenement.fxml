@@ -6,12 +6,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.evenements.ModifierEvenementController">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.evenements.ModifierEvenementController">
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -46,8 +48,22 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
-          <Button mnemonicParsing="false" onMouseClicked="#modifierEvent" text="Modifier" />
-            <Button mnemonicParsing="false" onMouseClicked="#retourEvent" text="Retour" />
+          <Button mnemonicParsing="false" onMouseClicked="#modifierEvent" prefHeight="74.0" prefWidth="99.0" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/updateEvent.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button mnemonicParsing="false" onMouseClicked="#retourEvent" style="-fx-background-color: #00000000;" text=" ">
+               <graphic>
+                  <ImageView fitHeight="103.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imageSideBar/retour.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
         </buttons>
       </ButtonBar>
    </bottom>

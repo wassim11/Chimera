@@ -27,8 +27,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import services.users.UserService;
-import utils.users.NavigationEntreInterfaces;
+import slowlifejava.services.users.UserService;
+import slowlifejava.utils.users.NavigationEntreInterfaces;
 
 /**
  * FXML Controller class
