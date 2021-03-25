@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="r" prefHeight="801.0" prefWidth="1047.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.centre.FXMLDocumentController">
+   <children>
+      <AnchorPane layoutY="122.0" prefHeight="665.0" prefWidth="377.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Line endX="13.556640625" endY="534.5443725585938" layoutX="337.0" layoutY="110.0" startX="13.556640625" startY="-54.14421081542969" stroke="#93a484" />
+            <GridPane layoutX="25.0" layoutY="69.0" prefHeight="506.0" prefWidth="304.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.6842498779297" minWidth="10.0" prefWidth="98.38748168945312" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.79656219482422" minWidth="10.0" prefWidth="206.11251831054688" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="128.94288635253906" minHeight="10.0" prefHeight="64.86325073242188" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="175.36740112304688" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="175.36740112304688" minHeight="10.0" prefHeight="26.86328125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="178.04904174804688" minHeight="10.0" prefHeight="118.13671875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="178.04904174804688" minHeight="10.0" prefHeight="30.75714111328125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="180.88369750976562" minHeight="10.0" prefHeight="75.36328125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="180.88369750976562" minHeight="10.0" prefHeight="38.63671875" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="211.4735107421875" minHeight="10.0" prefHeight="52.016357421875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="121.06121826171875" minHeight="10.0" prefHeight="41.2734375" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Nom:" textFill="#2a6f07">
+                     <font>
+                        <Font name="Baghdad Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Adresse:" textFill="#2a6f07" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Baghdad Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Description:" textFill="#2a6f07" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Baghdad Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="URL image:" textFill="#2a6f07" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Baghdad Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Type:" textFill="#2a6f07" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Baghdad Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="ajoutercentre" mnemonicParsing="false" onAction="#btnajouterCentre" prefHeight="27.0" prefWidth="81.0" styleClass="bimage" text="Ajouter" GridPane.rowIndex="8">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/Applications/XAMPP/xamppfiles/htdocs/projet/src/image/icons8-add-new-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="supprimercentre" mnemonicParsing="false" onAction="#btnsupprimercentre" prefHeight="29.0" prefWidth="116.0" styleClass="bimage" text="Supprimer" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/Applications/XAMPP/xamppfiles/htdocs/projet/src/image/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <ChoiceBox fx:id="cbtypecentre" prefWidth="150.0" styleClass="combob" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="tfimagecentre" onKeyTyped="#cntsimagecentre" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="tfnomcentre" GridPane.columnIndex="1" />
+                  <TextField fx:id="tflieucentre" onKeyTyped="#cntsadressecentre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label id="c2" fx:id="cntdesccentre" prefHeight="17.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label id="c1" fx:id="cntadressecentre" prefHeight="17.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label id="c3" fx:id="cntimagecentre" prefHeight="17.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <JFXTextArea fx:id="tfdesccentre" focusColor="#ffb845" prefHeight="78.0" prefWidth="140.0" styleClass="desc" unFocusColor="#39c94c" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+            <Button fx:id="modifiercentre" layoutX="27.0" layoutY="586.0" mnemonicParsing="false" onAction="#btnmodifiercentre" text="Modifier" />
+            <Button fx:id="annulermodcentre" layoutX="273.0" layoutY="589.0" mnemonicParsing="false" onAction="#btnannulermodcentre" text="annuler" />
+            <Button fx:id="enregistrermodcentre" layoutX="132.0" layoutY="589.0" mnemonicParsing="false" onAction="#btnenregistrermodcentre" text="Save changes" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="affichage" layoutX="368.0" layoutY="195.0" prefHeight="574.0" prefWidth="660.0" AnchorPane.rightAnchor="8.0">
+         <children>
+            <TableView fx:id="tableCentre" layoutX="21.0" layoutY="4.0" prefHeight="568.0" prefWidth="657.0" AnchorPane.rightAnchor="3.0">
+              <columns>
+                  <TableColumn fx:id="colnomcentre" prefWidth="94.6817626953125" text="Nom" />
+                  <TableColumn fx:id="coltypecentre" prefWidth="115.92120361328125" text="Type" />
+                  <TableColumn fx:id="coladressecentre" prefWidth="129.90576171875" text="Adresse" />
+                  <TableColumn fx:id="coldescriptioncentre" prefWidth="177.279541015625" text="Description" />
+                  <TableColumn fx:id="coldetailcentre" prefWidth="163.22039794921875" text="Details" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="nomcentrechercher" layoutX="609.0" layoutY="84.0" prefHeight="27.0" prefWidth="160.0" promptText="Par Nom" />
+      <Label layoutX="552.0" layoutY="89.0" text="nom:" textFill="#cda252" />
+      <Label layoutX="428.0" layoutY="91.0" text="Rechercher:" textFill="#2b6e08">
+         <font>
+            <Font name="Baghdad Regular" size="16.0" />
+         </font></Label>
+      <Label id="titre" layoutX="19.0" layoutY="4.0" prefHeight="106.0" prefWidth="352.0" text="Gestion  des  centres:" textFill="#56a43e">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="553.0" layoutY="133.0" text="type:" textFill="#cda252" />
+      <Label layoutX="869.0" layoutY="90.0" text="Trier:" textFill="#2a6f07">
+         <font>
+            <Font name="Baghdad Regular" size="15.0" />
+         </font></Label>
+      <Line endX="2.47052001953125" endY="-62.00646209716797" layoutX="821.0" layoutY="133.0" startX="2.47052001953125" startY="45.60328674316406" stroke="#bfc9b9" />
+      <JFXCheckBox fx:id="triNom" layoutX="928.0" layoutY="102.0" onAction="#trierCentrenom" text="Nom" textFill="#cda252" unCheckedColor="#acbf9b" />
+      <JFXCheckBox fx:id="triAdresse" layoutX="928.0" layoutY="149.0" onAction="#trierCentreAdresse" text="Adresse" textFill="#cda252" unCheckedColor="#acbf9b" />
+      <JFXComboBox fx:id="typecentrerecherche" focusColor="#39c94c" layoutX="610.0" layoutY="128.0" onAction="#RechercherTypeCentre" prefHeight="27.0" prefWidth="159.0" unFocusColor="#aed0ac" />
+   </children>
+</AnchorPane>

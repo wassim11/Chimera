@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="1045.0" prefWidth="1071.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.centre.AfficherRendezvousController">
+   <children>
+      <ScrollPane layoutX="15.0" prefHeight="1051.0" prefWidth="956.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+          <AnchorPane id="affrdv" minHeight="0.0" minWidth="0.0" prefHeight="1044.0" prefWidth="1067.0">
+               <children>
+                  <TableView fx:id="tableRDV" layoutX="35.0" layoutY="105.0" prefHeight="439.0" prefWidth="858.0">
+                    <columns>
+                      <TableColumn fx:id="colclientrdv" prefWidth="139.78826141357422" text="Client" />
+                      <TableColumn fx:id="colmailrdv" prefWidth="194.71173095703125" text="Email" />
+                        <TableColumn fx:id="colcentrerdv" prefWidth="144.21176147460938" text="Centre" />
+                        <TableColumn fx:id="colservicerdv" prefWidth="137.25674438476562" text="Service" />
+                        <TableColumn fx:id="coldaterdv" prefWidth="125.3648681640625" text="Date " />
+                        <TableColumn fx:id="coltempsrdv" prefWidth="119.43255615234375" text="Heure" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="1.0" layoutY="5.0" prefHeight="37.0" prefWidth="297.0" text="Les Rendez-vous:" textFill="#56a43e">
+                     <font>
+                        <Font size="38.0" />
+                     </font></Label>
+                  <Label layoutX="157.0" layoutY="60.0" text="Rechrecher" textFill="#2a6f07">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="rechercherrdv" layoutX="269.0" layoutY="57.0" promptText="par Client ou Centre" />
+                  <Label layoutX="575.0" layoutY="60.0" text="Trier:" textFill="#2a6f07">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <ComboBox fx:id="cbtrier" layoutX="639.0" layoutY="56.0" onAction="#TrierRdv" prefWidth="150.0" styleClass="combob" />
+                  <TableView fx:id="tableUpComingRDV" layoutX="275.0" layoutY="614.0" prefHeight="410.0" prefWidth="316.0">
+                    <columns>
+                      <TableColumn fx:id="colclientupcoming" prefWidth="97.70098876953125" text="Client" />
+                      <TableColumn fx:id="colcentreupcoming" prefWidth="108.299072265625" text="Centre" />
+                        <TableColumn fx:id="coldateupcoming" prefWidth="109.00439453125" text="Date" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="236.0" layoutY="596.0" text="Rendez-vous dans les 3 prochains jours:">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <Button fx:id="btnEnvoyerMail" layoutX="691.0" layoutY="987.0" mnemonicParsing="false" text="Envoyer un email" />
+                  <Button fx:id="btnrefresh" layoutX="794.0" layoutY="562.0" mnemonicParsing="false" onAction="#RefreshRdv" text="Refresh">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="file:/Applications/XAMPP/xamppfiles/htdocs/projet/src/image/icons8-refresh-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

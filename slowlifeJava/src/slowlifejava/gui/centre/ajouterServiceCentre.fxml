@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="485.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.centre.AjouterServiceCentreController">
+   <children>
+      <Label fx:id="nomcentre" layoutX="160.0" layoutY="73.0" prefHeight="27.0" prefWidth="100.0" />
+      <ComboBox fx:id="cbservice" layoutX="128.0" layoutY="159.0" onAction="#changerNomCB" prefWidth="150.0" styleClass="combob" />
+      <Label layoutX="23.0" layoutY="77.0" text="Nom du centre:" textFill="#2a6f07">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Button fx:id="btnajouterservicecentre" layoutX="137.0" layoutY="373.0" mnemonicParsing="false" onAction="#ajouterServiceCentre" text="Ajouter" />
+      <Button fx:id="btnannulerservicecentre" layoutX="230.0" layoutY="373.0" mnemonicParsing="false" onAction="#annulerServiceCentre" text="Annuler" />
+      <Label layoutX="65.0" layoutY="255.0" text="Prix:" textFill="#2a6f07">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="cntprixservicecentre" layoutX="130.0" layoutY="276.0" prefHeight="27.0" prefWidth="150.0" />
+      <Label fx:id="nomservicech" layoutX="322.0" layoutY="154.0" prefHeight="27.0" prefWidth="125.0" />
+      <TextField fx:id="prixservicecentre" layoutX="130.0" layoutY="250.0" onKeyTyped="#ctnsPrixServiceCentre" />
+      <Label layoutX="50.0" layoutY="164.0" text="Service:" textFill="#2a6f07">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <TableView fx:id="tableselectservice" layoutX="347.0" layoutY="73.0" prefHeight="364.0" prefWidth="366.0">
+        <columns>
+          <TableColumn fx:id="colnomserviceselect" prefWidth="83.0" text="Nom" />
+          <TableColumn fx:id="coltypeserviceselect" prefWidth="90.0" text="Type" />
+            <TableColumn fx:id="coldescserviceselect" prefWidth="190.0" text="Description" />
+        </columns>
+      </TableView>
+      <Label layoutX="347.0" layoutY="14.0" text="Selectionnez un service:" />
+      <TextField fx:id="chercherservajcentre" layoutX="367.0" layoutY="39.0" promptText="Chercher par nom" />
+      <Button fx:id="selectajServiceCentre" layoutX="479.0" layoutY="444.0" mnemonicParsing="false" onAction="#SelectServicecentreField" text="Selectionner" />
+      <ComboBox fx:id="typeservrecherchecentre" layoutX="566.0" layoutY="39.0" onAction="#ChercherServicetabservcent" prefWidth="150.0" promptText="Chercher par type" styleClass="combob" />
+   </children>
+</AnchorPane>

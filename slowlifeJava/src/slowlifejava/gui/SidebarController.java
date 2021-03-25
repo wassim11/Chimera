@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gui;
+package slowlifejava.gui;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -48,6 +52,16 @@ public class SidebarController implements Initializable {
     private Button btnUtilisateur;
     @FXML
     private ImageView signip;
+    @FXML
+    private ImageView sousmenu1;
+    @FXML
+    private ImageView sousmenu2;
+    @FXML
+    private ImageView sousmenu3;
+    @FXML
+    private ImageView sousmenu4;
+    @FXML
+    private ImageView sousmenu5;
 
     /**
      * Initializes the controller class.
@@ -100,7 +114,50 @@ public class SidebarController implements Initializable {
     }
 
     @FXML
-    private void SMCentres(ActionEvent event) {
+    private void SMCentres(ActionEvent event) throws FileNotFoundException {
+         int i=1; //a changer
+        InputStream stream;
+              if (i==1)
+              {stream = new FileInputStream("src/imageSideBar/centre.png");
+                Image image = new Image(stream);
+                 sousmenu1.setImage(image);
+                 stream = new FileInputStream("src/image/serviceIcon.png");
+                image = new Image(stream);
+                 sousmenu2.setImage(image);
+                 stream = new FileInputStream("src/image/RdvIcon.png");
+                image = new Image(stream);
+                 sousmenu3.setImage(image);
+                 stream = new FileInputStream("src/image/staticon.png");
+                image = new Image(stream);
+                 sousmenu4.setImage(image);
+                 stream = new FileInputStream("src/image/c.png");
+                image = new Image(stream);
+                 sousmenu5.setImage(image);
+                 sousmenu1.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/FXMLDocument");});
+                 sousmenu2.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/gestionService");});
+                 sousmenu3.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/AfficherRendezvous");});
+                 sousmenu4.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/StatCentreService");});
+                 
+              }
+              else if (i==2)
+              {stream = new FileInputStream("src/imageSideBar/centre.png");
+                Image image = new Image(stream);
+                 sousmenu1.setImage(image);
+                 
+                 stream = new FileInputStream("src/image/RdvIcon.png");
+                image = new Image(stream);
+                 sousmenu2.setImage(image);
+                 stream = new FileInputStream("src/image/staticon.png");
+                image = new Image(stream);
+                 sousmenu3.setImage(image);
+                 stream = new FileInputStream("src/image/c.png");
+                image = new Image(stream);
+                 sousmenu4.setImage(image);
+                 sousmenu1.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/FrontC");});
+                 sousmenu2.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/GestionRendezvous");});
+                 sousmenu3.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/StatPrixService");});
+            
+              }
     }
 
     @FXML
