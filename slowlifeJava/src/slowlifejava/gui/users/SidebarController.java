@@ -129,12 +129,7 @@ public class SidebarController implements Initializable {
         */
         user=us.getUserlogged();
         if(user.getType()==1){
-        image1.setImage(new Image("slowlifejava/gui/RecetteSuivi/sousmenu/recipe.png"));
-        label1.setText("Recette");
-        image1.setOnMouseClicked(evenement->{
         LoadPage("/slowlifejava/gui/RecetteSuivi/Recette/RecetteBack");
-        
-        });
         }
     }
 
