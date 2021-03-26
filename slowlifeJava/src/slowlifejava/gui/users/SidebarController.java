@@ -21,9 +21,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -68,7 +68,22 @@ public class SidebarController implements Initializable {
     private HBox statistic_hb;
     @FXML
     private Button mdp_btn;
-
+  
+    //3 sous menu
+    @FXML
+    private ImageView image1;
+    @FXML
+    private Label label1;
+    @FXML
+    private ImageView image2;
+    @FXML
+    private Label label2;
+    @FXML
+    private ImageView image3;
+    @FXML
+    private Label label3;
+    
+    private Utilisateur user;
     /**
      * Initializes the controller class.
      */
@@ -106,7 +121,21 @@ public class SidebarController implements Initializable {
     }
 
     @FXML
-    private void SMRegime(ActionEvent event) {
+    private void SMRegime(ActionEvent event) throws SQLException {
+        /*
+        1 admin
+        2 client
+        3 coach
+        */
+        user=us.getUserlogged();
+        if(user.getType()==1){
+        image1.setImage(new Image("slowlifejava/gui/RecetteSuivi/sousmenu/recipe.png"));
+        label1.setText("Recette");
+        image1.setOnMouseClicked(evenement->{
+        LoadPage("/slowlifejava/gui/RecetteSuivi/Recette/RecetteBack");
+        
+        });
+        }
     }
 
     @FXML

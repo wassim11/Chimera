@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorid" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #E5E8E8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.RecetteSuivi.Recette.IngredientController">
+   <children>
+      <Separator layoutX="454.0" layoutY="55.0" orientation="VERTICAL" prefHeight="420.0" prefWidth="5.0" style="-fx-background-color: black; -fx-background-size: 10px; -fx-border-color: white;" />
+      <VBox layoutX="550.0" layoutY="67.0" prefHeight="210.0" prefWidth="285.0" spacing="5.0">
+         <children>
+            <VBox prefHeight="146.0" prefWidth="285.0" spacing="20.0">
+               <children>
+                  <JFXTextField fx:id="tfNom" labelFloat="true" promptText="Nom" unFocusColor="RED">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <HBox prefHeight="30.0" prefWidth="285.0">
+                     <children>
+                        <Label prefHeight="34.0" prefWidth="82.0" text="Calorie">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <JFXSlider fx:id="Calorie" majorTickUnit="100.0" max="700.0" minorTickCount="1" prefHeight="27.0" prefWidth="255.0" showTickLabels="true" value="350.0">
+                           <HBox.margin>
+                              <Insets top="6.0" />
+                           </HBox.margin></JFXSlider>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="28.0" prefWidth="285.0" spacing="2.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="50.0" text="Image">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfImage" disable="true" editable="false" prefHeight="27.0" prefWidth="169.0" />
+                        <JFXButton onAction="#GetPhoto" prefHeight="30.0" prefWidth="68.0" style="-fx-border-color: white; -fx-background-color: skyblue;" text="Importer" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox prefHeight="45.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <ImageView fx:id="btnInsert" fitHeight="38.0" fitWidth="38.0" onMouseClicked="#InsertButtonAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../buttons/insert.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="6.0" left="20.0" top="6.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="btnUpdate" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#UpdateButtonAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../buttons/edit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnDelete" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#DeleteButtonAction" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../buttons/delete.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <JFXButton fx:id="btnvalider" layoutX="182.0" layoutY="419.0" onAction="#Affecter" style="-fx-background-color: black;" text="Valider" textFill="WHITE" />
+      <ScrollPane fx:id="spIngredient" layoutX="493.0" layoutY="285.0" prefHeight="200.0" prefWidth="380.0" />
+      <JFXTextField fx:id="qtt" alignment="CENTER" labelFloat="true" layoutX="176.0" layoutY="211.0" prefHeight="25.0" prefWidth="65.0" promptText="Quantité" style="-fx-background-color: skyblue;" />
+      <JFXButton fx:id="ajouter" layoutX="196.0" layoutY="252.0" onAction="#ajouter" style="-fx-background-color: orange;" text="&gt;" />
+      <VBox layoutX="21.0" layoutY="86.0" prefHeight="300.0" prefWidth="140.0" spacing="5.0">
+         <children>
+            <HBox prefHeight="40.0" prefWidth="136.0" style="-fx-border-color: #C39BD3;">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../SousMenu/Ingredient.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="98.0" text="Ingredients">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <JFXListView fx:id="listNom" prefHeight="250.0" prefWidth="135.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="255.0" layoutY="86.0" prefHeight="300.0" prefWidth="170.0" spacing="5.0">
+         <children>
+            <HBox prefHeight="40.0" prefWidth="136.0" style="-fx-border-color: #C39BD3;">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../SousMenu/Recette.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="106.0" text="Recette">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <JFXListView fx:id="listRecette" prefHeight="253.0" prefWidth="145.0" />
+         </children>
+      </VBox>
+      <JFXButton layoutX="198.0" layoutY="284.0" onAction="#DeleteFromRecette" style="-fx-background-color: red;" text="x" />
+   </children>
+</AnchorPane>

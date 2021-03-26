@@ -72,7 +72,7 @@ public class ServiceRendezvous {
     
     
     
-    
+  /*  
     public  ObservableList<Rendezvous> afficherRendezvous() throws SQLException {
         
             Statement stm = cnx.createStatement();
@@ -433,6 +433,6 @@ public class ServiceRendezvous {
 
     }
         
-    
+    */
     
 }

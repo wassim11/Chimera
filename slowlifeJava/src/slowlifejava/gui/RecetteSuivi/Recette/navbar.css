@@ -1,0 +1,21 @@
+.button {
+    -fx-border: none;
+    /*-fx-padding: 16px 32px;*/
+    -fx-background-color:white;
+    -fx-text-align: center;
+    -fx-text-decoration: none;
+    -fx-display: inline-block;
+    -fx-font-size: 12px;
+    -fx-margin: 4px 2px;
+    -fx-transition-duration: 0.4s;
+    -fx-text-fill: black;
+    -fx-border-color: #148F77 ;
+    -fx-border-width:  2px 0px 2px 0px;
+  }
+  
+  .button:hover {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-border-width:  2px 2px 2px 2px;
+    -fx-border-color: #239B56;
+  }

@@ -7,6 +7,7 @@ package slowlifejava.gui.centre;
 
 //import Entities.Centre;
 //import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXCheckBox;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;

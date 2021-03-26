@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.RecetteSuivi.Recette.DetailsRecetteController">
+   <children>
+      <Label fx:id="Titre" layoutX="188.0" layoutY="23.0" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: red;">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="image" fitHeight="200.0" fitWidth="350.0" layoutX="125.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true" />
+      <ScrollPane fx:id="ingredient" layoutX="14.0" layoutY="428.0" prefHeight="250.0" prefWidth="180.0" style="-fx-background-color: blue;" />
+      <ScrollPane fx:id="Description" layoutX="209.0" layoutY="428.0" prefHeight="250.0" prefWidth="370.0" style="-fx-background-color: blue;" />
+      <Label fx:id="Type" layoutX="425.0" layoutY="28.0" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: blue;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="14.0" layoutY="381.0" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #f5f6f7;" text="Ingrédients" textFill="ORANGE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="210.0" layoutY="381.0" prefHeight="40.0" prefWidth="370.0" style="-fx-background-color: #f5f6f7;" text="Préparation" textFill="ORANGE">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+      <HBox layoutX="63.0" layoutY="325.0" prefHeight="50.0" prefWidth="125.0">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/calories.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="calories" alignment="CENTER" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: red;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="240.0" layoutY="318.0" prefHeight="50.0" prefWidth="340.0" spacing="5.0">
+         <children>
+            <Label prefHeight="50.0" prefWidth="80.0" text="Publier par">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imagecoach" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="nomcoach" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: black;" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

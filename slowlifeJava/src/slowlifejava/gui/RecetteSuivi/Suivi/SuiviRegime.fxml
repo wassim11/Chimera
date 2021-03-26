@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="slowlifejava.gui.RecetteSuivi.Suivi.SuiviRegimeController">
+   <children>
+      <HBox prefHeight="192.0" prefWidth="900.0" style="-fx-background-color: #3CB371;">
+         <children>
+            <Label alignment="CENTER" prefHeight="192.0" prefWidth="906.0" text="Suivi Personnel" textFill="#00ff40">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutX="442.0" layoutY="243.0" prefHeight="50.0" prefWidth="100.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="130.0" text="Tri par">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXCheckBox fx:id="TriDateAsc" onMouseClicked="#DateAsc" text="Date Croissant" textFill="BLUE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="TriDateDesc" onMouseClicked="#DateDesc" text="Date Decroissant" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXCheckBox>
+         </children>
+      </VBox>
+      <HBox layoutX="606.0" layoutY="278.0" prefHeight="28.0" prefWidth="250.0" spacing="10.0">
+         <children>
+            <JFXDatePicker fx:id="DateD" defaultColor="#00ffe5" onHidden="#Datedebut" />
+            <JFXDatePicker fx:id="DateF" defaultColor="#00ffe5" onHidden="#DateFin" />
+         </children>
+      </HBox>
+      <VBox layoutX="14.0" layoutY="265.0" prefHeight="300.0" prefWidth="383.0" spacing="15.0">
+         <children>
+            <HBox prefHeight="217.0" prefWidth="383.0">
+               <children>
+                  <VBox prefHeight="171.0" prefWidth="131.0" spacing="18.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="154.0" text="Taille">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="171.0" text="Poids">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="140.0" text="Durée d'activité">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="176.0" text="Consommation en eau">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="217.0" prefWidth="158.0" spacing="19.0">
+                     <children>
+                        <JFXSlider fx:id="SlTaille" majorTickUnit="20.0" max="220.0" min="100.0" showTickLabels="true" stylesheets="@SliderRed.css" value="160.0" />
+                        <JFXSlider fx:id="SlPoids" blockIncrement="1.0" majorTickUnit="20.0" max="220.0" min="20.0" minorTickCount="5" showTickLabels="true" stylesheets="@SliderBlue.css" value="120.0" />
+                        <JFXSlider fx:id="SlActivite" majorTickUnit="60.0" max="180.0" minorTickCount="6" showTickLabels="true" showTickMarks="true" stylesheets="@SliderMarron.css" value="90.0" />
+                        <JFXSlider fx:id="Slconso" majorTickUnit="1.0" max="10.0" minorTickCount="1" showTickLabels="true" value="5.0" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="150.0" prefWidth="81.0" spacing="23.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="83.0" text="Cm">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="82.0" text="Kg">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="82.0" text="Minutes">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="393.0" spacing="30.0">
+               <children>
+                  <ImageView fx:id="btnInsert" fitHeight="38.0" fitWidth="38.0" onMouseClicked="#InsertSuivi" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../buttons/insert.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="6.0" left="20.0" top="6.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="btnUpdate" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#UpdateSuivi" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../buttons/edit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="btnDelete" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#DeleteSuivi" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../buttons/delete.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" top="5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <ScrollPane fx:id="sp" layoutX="394.0" layoutY="322.0" prefHeight="360.0" prefWidth="500.0" />
+   </children>
+</AnchorPane>

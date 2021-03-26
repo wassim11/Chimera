@@ -29,6 +29,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import slowlifejava.entities.centre.Rendezvous;
 import slowlifejava.services.centre.ServiceRendezvous;
 
@@ -78,18 +85,19 @@ public class AfficherRendezvousController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            cbtrier.getItems().addAll("Date","Nom Client","Nom Centre");
-            showRendezvous();
-            showUpcomingRendezvous();
-        } catch (SQLException ex) {
-            Logger.getLogger(AfficherRendezvousController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            cbtrier.getItems().addAll("Date","Nom Client","Nom Centre");
+//            showRendezvous();
+//            showUpcomingRendezvous();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AfficherRendezvousController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }    
     
-    
+    /*
      public void showRendezvous() throws SQLException
     {
         ServiceRendezvous sr =new ServiceRendezvous();
@@ -430,7 +438,7 @@ FilteredList<Rendezvous> filteredData = new FilteredList<>(lr, p -> true);
          sr.supprimerRendezvousDate(ldt);
          showRendezvous();
     }
-
+*/
       
     
 }
