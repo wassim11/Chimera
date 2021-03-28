@@ -156,21 +156,21 @@ public class SidebarController implements Initializable {
         int i=1; //a changer
         InputStream stream;
               if (i==1)
-              {stream = new FileInputStream("src/imageSideBar/centre.png");
+              {stream = new FileInputStream("src/gui/centre/imageSideBar/centre.png");
                 Image image = new Image(stream);
                  sousmenu1.setImage(image);
-                 stream = new FileInputStream("src/image/serviceIcon.png");
+                 stream = new FileInputStream("src/gui/centre/image/serviceIcon.png");
                 image = new Image(stream);
                  sousmenu2.setImage(image);
-                 stream = new FileInputStream("src/image/RdvIcon.png");
+                 stream = new FileInputStream("src/gui/centre/image/RdvIcon.png");
                 image = new Image(stream);
                  sousmenu3.setImage(image);
-                 stream = new FileInputStream("src/image/staticon.png");
+                 stream = new FileInputStream("src/gui/centre/image/staticon.png");
                 image = new Image(stream);
                  sousmenu4.setImage(image);
-                 stream = new FileInputStream("src/image/c.png");
-                image = new Image(stream);
-                 sousmenu5.setImage(image);
+//                 stream = new FileInputStream("src/gui/centre/image/c.png");
+//                image = new Image(stream);
+//                 sousmenu5.setImage(image);
                  sousmenu1.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/FXMLDocument");});
                  sousmenu2.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/gestionService");});
                  sousmenu3.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/AfficherRendezvous");});
@@ -178,19 +178,19 @@ public class SidebarController implements Initializable {
                  
               }
               else if (i==2)
-              {stream = new FileInputStream("src/imageSideBar/centre.png");
+              {stream = new FileInputStream("src/gui/centre/imageSideBar/centre.png");
                 Image image = new Image(stream);
                  sousmenu1.setImage(image);
                  
-                 stream = new FileInputStream("src/image/RdvIcon.png");
+                 stream = new FileInputStream("src/gui/centre/image/RdvIcon.png");
                 image = new Image(stream);
                  sousmenu2.setImage(image);
-                 stream = new FileInputStream("src/image/staticon.png");
+                 stream = new FileInputStream("src/gui/centre/image/staticon.png");
                 image = new Image(stream);
                  sousmenu3.setImage(image);
-                 stream = new FileInputStream("src/image/c.png");
-                image = new Image(stream);
-                 sousmenu4.setImage(image);
+//                 stream = new FileInputStream("src/gui/centre/image/c.png");
+//                image = new Image(stream);
+//                 sousmenu4.setImage(image);
                  sousmenu1.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/FrontC");});
                  sousmenu2.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/GestionRendezvous");});
                  sousmenu3.setOnMouseClicked(eventt->{LoadPage("/slowlifejava/gui/centre/StatPrixService");});

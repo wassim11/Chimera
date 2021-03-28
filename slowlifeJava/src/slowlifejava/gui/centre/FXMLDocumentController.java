@@ -393,9 +393,9 @@ FilteredList<Centre> filteredData = new FilteredList<>(lc, p -> true);
 
     @FXML
     private void cntsimagecentre(KeyEvent event) {
-        if(!tfimagecentre.getText().startsWith("src/image/"))
+        if(!tfimagecentre.getText().startsWith("src/gui/centre/image/"))
         {
-            cntimagecentre.setText("image doit etre contenue dans src/image !!");
+            cntimagecentre.setText("image doit etre contenue dans src/gui/centre/image !!");
         }
         else if((!tfimagecentre.getText().endsWith(".jpg")) && (!tfimagecentre.getText().endsWith(".png"))&& (!tfimagecentre.getText().endsWith(".jpeg")))
         {
