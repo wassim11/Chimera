@@ -17,15 +17,15 @@ import javafx.stage.Stage;
  */
 public class Slowlife extends Application {
 
+    
     public static Stage stage = null;
 
     @Override
-    public void start(Stage s) throws Exception {
-       stage=s;
-       stage.setTitle("SlowLife");
-        
+    public void start(Stage stage) throws Exception {
+
+stage.setTitle("SlowLife");
        Parent root = FXMLLoader.load(getClass().getResource("/slowlifejava/gui/users/AccueilPage.fxml"));
-       Scene scene=new Scene(root, 1200, 700);
+       Scene scene=new Scene(root);
        stage.setScene(scene);
        stage.show();
     }

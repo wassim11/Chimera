@@ -29,6 +29,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Tooltip;
 import slowlifejava.services.users.UserService;
 import slowlifejava.utils.SlowlifeDB;
 
@@ -49,6 +50,7 @@ public class StatistiqueController implements Initializable {
     ObservableList<PieChart.Data> pieageData;
     ObservableList<PieChart.Data> pietypeData;
     ObservableList<PieChart.Data> piedomainData;
+    ObservableList<PieChart.Data> piegenreData;
 
     /**
      * Initializes the controller class.
@@ -60,10 +62,15 @@ public class StatistiqueController implements Initializable {
         list.add("L'age des Utilisateurs");
         list.add("Le type des Utilisateurs");
         list.add("Le domaine des Coachs");
+        list.add("Le genre des Utilisateurs");
         stat_cmb.setItems(list);
-//            ageStat();
-//            typeStat(); 
-//            domainStat();
+        stat_cmb.getSelectionModel().select("L'age des Utilisateurs");
+        try {
+            ageStat();
+        } catch (SQLException ex) {
+            Logger.getLogger(StatistiqueController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }
 
@@ -80,6 +87,12 @@ public class StatistiqueController implements Initializable {
             pieageData.add(new PieChart.Data((rs.getString("year")), rs.getInt("nb")));
         }
         pie_age.setData(pieageData);
+        pie_age.setTitle("Les utilisateurs par age");
+        pie_age.getData().forEach(data -> {
+            String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
+            Tooltip toolTip = new Tooltip(percentage);
+            Tooltip.install(data.getNode(), toolTip);
+        });
     }
 
     public void typeStat() throws SQLException {
@@ -95,6 +108,12 @@ public class StatistiqueController implements Initializable {
             }
         }
         pie_age.setData(pietypeData);
+        pie_age.setTitle("Les utilisateurs par type");
+        pie_age.getData().forEach(data -> {
+            String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
+            Tooltip toolTip = new Tooltip(percentage);
+            Tooltip.install(data.getNode(), toolTip);
+        });
 
     }
 
@@ -107,6 +126,30 @@ public class StatistiqueController implements Initializable {
             piedomainData.add(new PieChart.Data((rs.getString("domaine")), rs.getInt("nb")));
         }
         pie_age.setData(piedomainData);
+        pie_age.setData(piedomainData);
+        pie_age.setTitle("Les coachs par domaine");
+        pie_age.getData().forEach(data -> {
+            String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
+            Tooltip toolTip = new Tooltip(percentage);
+            Tooltip.install(data.getNode(), toolTip);
+        });
+
+    }
+     public void genreStat() throws SQLException {
+        piegenreData = FXCollections.observableArrayList();
+        String req = "SELECT genre, COUNT(*) AS nb FROM utilisateur GROUP BY genre";
+        Statement st = SlowlifeDB.getInstance().getConnection().createStatement();
+        ResultSet rs = st.executeQuery(req);
+        while (rs.next()) {
+            piegenreData.add(new PieChart.Data((rs.getString("genre")), rs.getInt("nb")));
+        }
+        pie_age.setData(piegenreData);
+        pie_age.setTitle("Les utilisateurs par genre");
+        pie_age.getData().forEach(data -> {
+            String percentage = String.format("%.2f%%", (data.getPieValue() / 100));
+            Tooltip toolTip = new Tooltip(percentage);
+            Tooltip.install(data.getNode(), toolTip);
+        });
 
     }
 
@@ -119,6 +162,8 @@ public class StatistiqueController implements Initializable {
             typeStat();
         } else if (stat_cmb.getValue().equals("Le domaine des Coachs")) {
             domainStat();
+        }else if (stat_cmb.getValue().equals("Le genre des Utilisateurs")) {
+            genreStat();
         }
     }
 

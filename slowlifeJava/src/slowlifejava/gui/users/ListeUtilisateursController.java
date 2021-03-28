@@ -86,6 +86,7 @@ public class ListeUtilisateursController implements Initializable {
     private TableColumn<Utilisateur, String> colImage;
     @FXML
     private JFXComboBox<String> domain_cmb;
+    ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -131,7 +132,7 @@ public class ListeUtilisateursController implements Initializable {
     public void Afficher() {
         domain_col.setVisible(false);
 
-        ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
+        //ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
         for (Utilisateur u : us.displayUsers()) {
             userList.add(u);
         }
@@ -153,7 +154,7 @@ public class ListeUtilisateursController implements Initializable {
                             setGraphic(null);
                             setText(null);
                         } else {
-                            if (item.isEmpty()) {
+                            if (item==null) {
                                 System.out.println("empty item");
                             } else {
                                 ImageView imagev = new ImageView();
@@ -192,10 +193,10 @@ public class ListeUtilisateursController implements Initializable {
 
     @FXML
     private void AfficherClient(ActionEvent event) {
+        userList.clear();
         domain_col.setVisible(false);
         domain_cmb.setVisible(false);
-
-        ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
+        //ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
         for (Client clt : cs.displayClients()) {
             userList.add(clt);
         }
@@ -204,14 +205,53 @@ public class ListeUtilisateursController implements Initializable {
         email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
         bday_col.setCellValueFactory(new PropertyValueFactory<>("bday"));
         genre_col.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        //photo_col.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        colImage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>> cellImage
+                = new Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>>() {
+            @Override
+            public TableCell call(final TableColumn<Utilisateur, String> param) {
+                final TableCell<Utilisateur, String> cell = new TableCell<Utilisateur, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            if (item==null) {
+                                System.out.println("empty item");
+                            } else {
+                                ImageView imagev = new ImageView();
+
+                                InputStream stream;
+                                try {
+                                    stream = new FileInputStream(item);
+                                    Image image = new Image(stream);
+                                    imagev.setImage(image);
+                                    imagev.setFitHeight(75);
+                                    imagev.setFitWidth(75);
+                                    setGraphic(imagev);
+                                    setText(null);
+                                } catch (FileNotFoundException ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+                            }
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colImage.setCellFactory(cellImage);
         list_tbl.setItems(userList);
     }
 
     @FXML
     private void AfficherCoach(ActionEvent event) throws SQLException {
+        userList.clear();
         domain_col.setVisible(true);
-        ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
+        //ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
         for (Coach ch : chs.displayCoachs()) {
             userList.add(ch);
         }
@@ -220,7 +260,45 @@ public class ListeUtilisateursController implements Initializable {
         email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
         bday_col.setCellValueFactory(new PropertyValueFactory<>("bday"));
         genre_col.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        //photo_col.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        colImage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>> cellImage
+                = new Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>>() {
+            @Override
+            public TableCell call(final TableColumn<Utilisateur, String> param) {
+                final TableCell<Utilisateur, String> cell = new TableCell<Utilisateur, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            if (item==null) {
+                                System.out.println("empty item");
+                            } else {
+                                ImageView imagev = new ImageView();
+
+                                InputStream stream;
+                                try {
+                                    stream = new FileInputStream(item);
+                                    Image image = new Image(stream);
+                                    imagev.setImage(image);
+                                    imagev.setFitHeight(75);
+                                    imagev.setFitWidth(75);
+                                    setGraphic(imagev);
+                                    setText(null);
+                                } catch (FileNotFoundException ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+                            }
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colImage.setCellFactory(cellImage);
         domain_col.setCellValueFactory(new PropertyValueFactory<>("Domaine"));
         list_tbl.setItems(userList);
         domain_cmb.setVisible(true);
@@ -230,7 +308,8 @@ public class ListeUtilisateursController implements Initializable {
 
     @FXML
     private void Rechercher(MouseEvent event) {
-        ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
+        userList.clear();
+        //ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
         for (Utilisateur u : us.RechercheUsers(rech_txt.getText())) {
             userList.add(u);
         }
@@ -240,7 +319,45 @@ public class ListeUtilisateursController implements Initializable {
         email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
         bday_col.setCellValueFactory(new PropertyValueFactory<>("bday"));
         genre_col.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        //photo_col.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        colImage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>> cellImage
+                = new Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>>() {
+            @Override
+            public TableCell call(final TableColumn<Utilisateur, String> param) {
+                final TableCell<Utilisateur, String> cell = new TableCell<Utilisateur, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            if (item==null) {
+                                System.out.println("empty item");
+                            } else {
+                                ImageView imagev = new ImageView();
+
+                                InputStream stream;
+                                try {
+                                    stream = new FileInputStream(item);
+                                    Image image = new Image(stream);
+                                    imagev.setImage(image);
+                                    imagev.setFitHeight(75);
+                                    imagev.setFitWidth(75);
+                                    setGraphic(imagev);
+                                    setText(null);
+                                } catch (FileNotFoundException ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+                            }
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colImage.setCellFactory(cellImage);
         list_tbl.setItems(userList);
     }
 
@@ -273,8 +390,9 @@ public class ListeUtilisateursController implements Initializable {
 
     }
     public void rechercheDomain(){
+        userList.clear();
         String domaineSelected=domain_cmb.getValue();
-         ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
+         //ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
         for (Coach u : us.RechercheByDomain(domaineSelected)) {
             userList.add(u);
         }
@@ -284,7 +402,45 @@ public class ListeUtilisateursController implements Initializable {
         email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
         bday_col.setCellValueFactory(new PropertyValueFactory<>("bday"));
         genre_col.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        //photo_col.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        colImage.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>> cellImage
+                = new Callback<TableColumn<Utilisateur, String>, TableCell<Utilisateur, String>>() {
+            @Override
+            public TableCell call(final TableColumn<Utilisateur, String> param) {
+                final TableCell<Utilisateur, String> cell = new TableCell<Utilisateur, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+                            if (item==null) {
+                                System.out.println("empty item");
+                            } else {
+                                ImageView imagev = new ImageView();
+
+                                InputStream stream;
+                                try {
+                                    stream = new FileInputStream(item);
+                                    Image image = new Image(stream);
+                                    imagev.setImage(image);
+                                    imagev.setFitHeight(75);
+                                    imagev.setFitWidth(75);
+                                    setGraphic(imagev);
+                                    setText(null);
+                                } catch (FileNotFoundException ex) {
+                                    System.out.println(ex.getMessage());
+                                }
+                            }
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colImage.setCellFactory(cellImage);
         list_tbl.setItems(userList);
     }
 
