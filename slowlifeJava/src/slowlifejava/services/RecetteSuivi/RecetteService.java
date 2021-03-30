@@ -29,12 +29,13 @@ public class RecetteService{
         cnx = SlowlifeDB.getInstance().getConnection();      
     }
     public void ajouter(Recette t) throws SQLException {
-        pre = cnx.prepareStatement("INSERT INTO `slowlife`.`recette` ( `nomRecette` , `typeRecette` , `description`, `image` , `etat`  ) VALUES (?,?,?,?,?);");
+        pre = cnx.prepareStatement("INSERT INTO `slowlife`.`recette` ( `nomRecette` , `typeRecette` , `description`, `image` , `etat` ,`idcoach`  ) VALUES (?,?,?,?,?,?);");
         pre.setString(1, t.getNomRecette());
         pre.setString(2, t.getTypeRecette());
         pre.setString(3, t.getDescription());
         pre.setString(4, t.getImage());
         pre.setString(5, t.getEtat());
+        pre.setInt(6, t.getUser().getId());
         try{
         pre.executeUpdate();
         }catch(SQLException SQLex)

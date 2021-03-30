@@ -29,8 +29,8 @@
                   <HBox prefHeight="30.0" prefWidth="285.0" spacing="10.0">
                      <children>
                         <JFXTextField fx:id="Calorie" prefHeight="25.0" prefWidth="130.0" promptText="Calorie" />
-                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="28.0" text="/" />
-                        <JFXComboBox fx:id="unite" prefHeight="25.0" prefWidth="107.0" promptText="unité" />
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="15.0" text="/" />
+                        <JFXComboBox fx:id="unite" prefHeight="25.0" prefWidth="127.0" promptText="unité" />
                      </children>
                   </HBox>
                   <HBox prefHeight="28.0" prefWidth="285.0" spacing="10.0">
@@ -47,7 +47,6 @@
                            <HBox.margin>
                               <Insets top="15.0" />
                            </HBox.margin></JFXButton>
-                        <ImageView fitHeight="52.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>

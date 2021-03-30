@@ -200,17 +200,18 @@ public class IngredientController implements Initializable {
              calorie.setAlignment(Pos.CENTER);
              
              Ligne.getChildren().addAll(NomImage,calorie);
-             Liste.setOnMouseClicked(click->{
-                 
-                 int nb = (int)click.getY()/52;
-                 System.out.println(click.getY());
-                 System.out.println(nb);
-                 id=list.get(nb).getId();
-                 tfNom.setText(list.get(nb).getNom());
-                 filePath=list.get(nb).getImage();
-                 Calorie.setText(String.valueOf(list.get(nb).getCalories()));
-                 unite.getSelectionModel().select(String.valueOf(list.get(nb).getUnite()));
+             Ligne.setOnMouseClicked(click->{
+            try {
+                 Ingredient ing=IS.RechercheParNom(new Ingredient(Titre.getText()));
+                 id=ing.getId();
+                 tfNom.setText(ing.getNom());
+                 filePath=ing.getImage();
+                 Calorie.setText(String.valueOf(ing.getCalories()));
+                 unite.getSelectionModel().select(String.valueOf(ing.getUnite()));
               
+            } catch (SQLException ex) {
+                Logger.getLogger(IngredientController.class.getName()).log(Level.SEVERE, null, ex);
+            }
                  
              });
              Liste.getChildren().add(Ligne);
@@ -331,7 +332,9 @@ public class IngredientController implements Initializable {
             {
                 Label Image = new Label();
                 Image.setGraphic(InitializeImageStream(new FileInputStream(I.getIng().getImage())));
-                Image.setText(I.getQuantite()+"g "+I.getIng().getNom());
+                IngredientService IS = new IngredientService();
+                String[] unitee = IS.RechercheParNom(new Ingredient(I.getIng().getNom())).getUnite().split("\\s+");
+                Image.setText(I.getQuantite()+unitee[1]+" "+I.getIng().getNom());
                 listRecette.getItems().add(Image);
                 listeIng.add(I.getIng().getNom());
             }

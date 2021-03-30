@@ -8,7 +8,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -43,11 +42,6 @@
                            </font></JFXCheckBox>
                      </children>
                   </VBox>
-                  <TextField fx:id="recherche" onKeyPressed="#recherche" prefHeight="30.0" prefWidth="150.0" promptText="Recherche">
-                     <HBox.margin>
-                        <Insets left="275.0" top="70.0" />
-                     </HBox.margin>
-                  </TextField>
                </children>
             </HBox>
             <ScrollPane fx:id="sp" prefHeight="375.0" prefWidth="550.0" style="-fx-background-color: white;" />

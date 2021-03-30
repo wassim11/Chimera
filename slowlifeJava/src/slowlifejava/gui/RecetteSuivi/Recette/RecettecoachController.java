@@ -97,6 +97,7 @@ public class RecettecoachController implements Initializable {
     private int SelectedId; 
     @FXML
     private ImageView image_recette;
+    UserService us = new UserService();
     /**
      * Initializes the controller class.
      * @param url
@@ -108,7 +109,6 @@ public class RecettecoachController implements Initializable {
          Tri=0;
          filePath=null;
          Liste = new ArrayList<>();
-         UserService us = new UserService();
         try {
             coach = us.getUserlogged();
         } catch (SQLException ex) {
@@ -173,7 +173,29 @@ public class RecettecoachController implements Initializable {
              Label Titre = new Label(list.get(i).getNomRecette());
              Titre.setPrefSize(150,75);
              Titre.setAlignment(Pos.CENTER);
-             
+             Ligne.setOnMouseClicked(open->{
+                 System.out.println("Titre="+Titre.getText());
+                      RecetteService RS;
+                 try {
+                     RS = new RecetteService();
+                     Recette rct = RS.RechercheParNom(new Recette(Titre.getText()));
+                     SelectedId =rct.getIdRecette();
+                          if(open.getClickCount()==1){ 
+                 SetInformations(new Recette(rct.getIdRecette(),rct.getNomRecette(),rct.getDescription(),rct.getTypeRecette(),rct.getImage()));
+                 }
+                 if(open.getClickCount()==2)
+                 {
+                     try {
+                         GoToIngredientEdit();
+                     } catch (SQLException | IOException ex) {
+                         System.out.println("passage de page Recette->Ingredient Impossible");
+                         System.out.println(ex);
+                     }
+                 }
+                 } catch (SQLException ex) {
+                     System.out.println("instanciation impossible regarder methode afficher");
+                 }
+             });
              NomImage.getChildren().addAll(imageRecette,Titre);
              
              List<IngredientRecette> LIR= SIR.readAll(new Recette(list.get(i).getIdRecette()));
@@ -198,26 +220,7 @@ public class RecettecoachController implements Initializable {
                 Status.setGraphic(new ImageView(new Image("/slowlifejava/gui/RecetteSuivi/buttons/accepter.png")));
             }
              Ligne.getChildren().addAll(NomImage,ListeIngredients,Status);
-             listes.setOnMouseClicked((MouseEvent open)->{
-                 int numeroLigne = (int)(open.getY()/76);
-                 SelectedId = list.get(numeroLigne).getIdRecette();
-                 if(open.getClickCount()==1){ 
-                 SetInformations(new Recette(list.get(numeroLigne).getIdRecette(),list.get(numeroLigne).getNomRecette(),list.get(numeroLigne).getDescription(),list.get(numeroLigne).getTypeRecette(),list.get(numeroLigne).getImage()));
-                 }
-                 if(open.getClickCount()==2)
-                 {
-                     try {
-                         GoToIngredientEdit();
-              
-                         
-                     } catch (SQLException | IOException ex) {
-                         System.out.println("passage de page Recette->Ingredient Impossible");
-                         System.out.println(ex);
-                     }
-                 }
-                 
-                 
-             });
+         
              listes.getChildren().add(Ligne);
              
             }
@@ -283,44 +286,11 @@ public class RecettecoachController implements Initializable {
           try{showRecette(trie(Tri));}catch(SQLException |FileNotFoundException e){System.out.println("error affichage dans tri type"+e);}
         });
     }
- /*public void searchRecette() throws SQLException {
-        RecetteService RS = new RecetteService();
-        List<Recette> liste;
-        liste =  trie(Tri);
-        ObservableList<Recette> data = FXCollections.observableArrayList(liste);
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nomRecette"));
-        colType.setCellValueFactory(new PropertyValueFactory<>("typeRecette"));
-        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colImage.setCellValueFactory(new PropertyValueFactory<>("image"));
-        tvRecette.setItems(data);
-       
-        FilteredList<Recette> filteredData = new FilteredList<>(data, b -> true);
-        
-       recherche.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate((Recette rct) -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String lowerCaseFilter = newValue.toLowerCase();
-                System.out.println("newvalue"+newValue);
-                System.out.println("oldvalue="+oldValue);
-                if (rct.getNomRecette().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches username
-               
-                }
-                else {
-                    return false; // Does not match.
-                }
-            });
-        });
-        SortedList<Recette> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(tvRecette.comparatorProperty());
-        tvRecette.setItems(sortedData);
-    }
-*/
+ 
     @FXML
     private void UpdateRecette(MouseEvent event) throws SQLException, FileNotFoundException {
            RecetteService RS=new RecetteService();
+           IngredientService IS = new IngredientService();
            System.out.println(IngredientController.liste);
            ServiceIngredientRecette SIR = new ServiceIngredientRecette();
            SIR.deleteAll(new Recette(SelectedId));
@@ -328,6 +298,46 @@ public class RecettecoachController implements Initializable {
            Recette rct=new Recette(SelectedId,tfNom.getText(),tfDesc.getText(),cbType.getValue(),filePath,"En Attente");
            System.out.println(rct);
            RS.update(rct);
+           
+           SIR.deleteAll(rct);
+           
+           for(int i=0;i<IngredientController.liste.size();i++)
+               {
+                   String[] str = null;
+                   if(IngredientController.liste.get(i).contains("gramme"))
+                   {
+                       System.out.println("g");
+                     str=IngredientController.liste.get(i).split("gramme ");
+                   }
+                   if(IngredientController.liste.get(i).contains("cl"))
+                   {
+                        System.out.println("cl");
+                     str=IngredientController.liste.get(i).split("cl ");
+                   }
+                    if(IngredientController.liste.get(i).contains("Càs"))
+                   {
+                        System.out.println("cas");
+                      str=IngredientController.liste.get(i).split("Càs ");
+                   }
+                      if(IngredientController.liste.get(i).contains("paquet"))
+                   {
+                        System.out.println("paquet");
+                      str=IngredientController.liste.get(i).split("paquet ");
+                   }
+                   System.out.println("\n \n \n");
+                   System.out.println("Recette="+RS.RechercheParNom(new Recette(tfNom.getText())));
+                   System.out.println(str[1]+"=str[1]");
+                   System.out.println("Ingredient="+new Ingredient(IS.RechercheParNom(new Ingredient(str[1]))));
+                   System.out.println("QTT="+Integer.parseInt(str[0]));
+                  SIR.ajouter(new IngredientRecette(RS.RechercheParNom(new Recette(tfNom.getText())), new Ingredient(IS.RechercheParNom(new Ingredient(str[1]))),Integer.parseInt(str[0])));
+               }
+           
+           
+           
+               tfNom.setText("");
+               cbType.getSelectionModel().select("");
+               tfDesc.setText("");
+               filePath="";
            showRecette(trie(Tri));   
         }
 
@@ -335,11 +345,12 @@ public class RecettecoachController implements Initializable {
     private void InsertRecette(MouseEvent event) throws SQLException, FileNotFoundException {
           RecetteService RS=new RecetteService();
           Recette rct=new Recette(tfNom.getText(),tfDesc.getText(),cbType.getValue(),filePath,"En Attente",coach);
-         RS.ajouter(rct);
-         showRecette(trie(Tri));     
+          RS.ajouter(rct);
+          showRecette(trie(Tri));     
                System.out.println(IngredientController.liste);
                ServiceIngredientRecette SIR = new ServiceIngredientRecette();
                IngredientService IS = new IngredientService();
+               
                for(int i=0;i<IngredientController.liste.size();i++)
                {
                    String[] str = null;
@@ -364,8 +375,6 @@ public class RecettecoachController implements Initializable {
                       str=IngredientController.liste.get(i).split("paquet ");
                    }
                
-      
-                    //System.out.println(" Recette="+RS.RechercheParNom(new Recette(tfNom.getText())));
                   SIR.ajouter(new IngredientRecette(RS.RechercheParNom(new Recette(tfNom.getText())), new Ingredient(IS.RechercheParNom(new Ingredient(str[1]))),Integer.parseInt(str[0])));
                }
                tfNom.setText("");
@@ -378,7 +387,10 @@ public class RecettecoachController implements Initializable {
     @FXML
     private void DeleteRecette(MouseEvent event) throws SQLException, FileNotFoundException {
            RecetteService RS=new RecetteService();
-           RS.delete(new Recette(SelectedId));
+           Recette rct =new Recette(SelectedId);
+           RS.delete(rct);
+           ServiceIngredientRecette SIR = new ServiceIngredientRecette();
+           SIR.deleteAll(rct);
            showRecette(trie(Tri));
     }
 
