@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package slowlifejava.services.RecetteSuivi;
-//import Utils.*;
-import entities.RecetteSuivi.Recette;
-import entities.RecetteSuivi.User;
+import entities.users.Utilisateur;
+import slowlifejava.entities.RecetteSuivi.Recette;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,7 +82,7 @@ public class RecetteService{
         }
         return true;//To change body of generated methods, choose Tools | Templates.//To change body of generated methods, choose Tools | Templates.
     }
-    public List<Recette> readAllCoach(User user) throws SQLException {
+    public List<Recette> readAllCoach(Utilisateur user) throws SQLException {
          List<Recette> Regimes = new ArrayList<>();
          ste=cnx.createStatement();
         try{
@@ -99,11 +98,30 @@ public class RecetteService{
         }
        return Regimes;
     }
-    public List<Recette> readAllClient() throws SQLException {
+    
+     public List<Recette> RechercheAllClient(Recette rct) throws SQLException {
          List<Recette> Regimes = new ArrayList<>();
          ste=cnx.createStatement();
         try{
-        ResultSet result =  ste.executeQuery("select * from `slowlife`. `recette` where etat='Accepter'");
+        ResultSet result =  ste.executeQuery("select * from `slowlife`. `recette` where idRecette='"+rct.getIdRecette()+"'");
+         while(result.next()){
+            Regimes.add(new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),result.getString("etat")));
+            //System.out.println(result.getString("nomRecette")+result.getInt("calorie")+result.getString("description"));
+        } //To change body of generated methods, choose Tools | Templates.
+        }
+        catch(SQLException SQLex)
+        {
+            System.out.println("Affichage Recette impossible"+ SQLex);
+        }
+       return Regimes;
+    }
+    
+    public List<Recette> readAllClient(Recette rct) throws SQLException {
+         List<Recette> Regimes = new ArrayList<>();
+         ste=cnx.createStatement();
+        try{
+            System.out.println("select * from `slowlife`. `recette` where etat='Accepter' && typeRecette="+rct.getNomRecette());
+        ResultSet result =  ste.executeQuery("select * from `slowlife`. `recette` where  typeRecette='"+rct.getNomRecette()+"' AND etat='Accepter'");
          while(result.next()){
             Regimes.add(new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),result.getString("etat")));
             //System.out.println(result.getString("nomRecette")+result.getInt("calorie")+result.getString("description"));
@@ -156,7 +174,7 @@ public class RecetteService{
             ste=cnx.createStatement();
             ResultSet result=ste.executeQuery(req);
             result.next();
-       Recette rct = new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),result.getString("etat"),new User(1));
+       Recette rct = new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),result.getString("etat"));
        
        return rct;
         }
@@ -191,7 +209,7 @@ public class RecetteService{
         try{
         ResultSet result =  ste.executeQuery(sql);
          while(result.next()){
-            Regimes.add(new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),result.getString("etat"),new User(1)));
+            Regimes.add(new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),result.getString("etat")));
             //System.out.println(result.getString("nomRecette")+result.getInt("calorie")+result.getString("description"));
         } //To change body of generated methods, choose Tools | Templates.
         }
@@ -205,9 +223,9 @@ public class RecetteService{
     public Recette RechercheParNom(Recette t) throws SQLException {
          ste=cnx.createStatement();
         try{
-        ResultSet result =  ste.executeQuery("select idRecette from recette where nomRecette='"+t.getNomRecette()+"'");
+        ResultSet result =  ste.executeQuery("select * from recette where nomRecette='"+t.getNomRecette()+"'");
         result.next();
-            return (new Recette(result.getInt("idRecette")));
+            return (new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),result.getString("etat")));
             
         } //To change body of generated methods, choose Tools | Templates.
         catch(SQLException SQLex)
@@ -216,5 +234,21 @@ public class RecetteService{
         }
        return (new Recette());
     }
+    public int CountRecetteByType(Recette t) throws SQLException {
+         ste=cnx.createStatement();
+        try{
+        ResultSet result =  ste.executeQuery("select count(*) as nb from recette where typeRecette='"+t.getNomRecette()+"'");
+            System.out.println("select SUM(typeRecette) as nb from recette where typeRecette='"+t.getNomRecette()+"'");
+        result.next();
+            return (result.getInt("nb"));
+            
+        } //To change body of generated methods, choose Tools | Templates.
+        catch(SQLException SQLex)
+        {
+            System.out.println("Recherche Par Nom impossible"+ SQLex);
+        }
+       return 0;
+    }
+    
    
 }

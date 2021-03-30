@@ -5,7 +5,7 @@
  */
 package slowlifejava.gui.RecetteSuivi.Recette;
 
-import entities.RecetteSuivi.Recette;
+import slowlifejava.entities.RecetteSuivi.Recette;
 //import Services.RecetteSuivi.RecetteService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

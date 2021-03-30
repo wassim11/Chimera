@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,28 +26,28 @@
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
-                  <HBox prefHeight="30.0" prefWidth="285.0">
+                  <HBox prefHeight="30.0" prefWidth="285.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="34.0" prefWidth="82.0" text="Calorie">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <JFXSlider fx:id="Calorie" majorTickUnit="100.0" max="700.0" minorTickCount="1" prefHeight="27.0" prefWidth="255.0" showTickLabels="true" value="350.0">
-                           <HBox.margin>
-                              <Insets top="6.0" />
-                           </HBox.margin></JFXSlider>
+                        <JFXTextField fx:id="Calorie" prefHeight="25.0" prefWidth="130.0" promptText="Calorie" />
+                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="28.0" text="/" />
+                        <JFXComboBox fx:id="unite" prefHeight="25.0" prefWidth="107.0" promptText="unité" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="28.0" prefWidth="285.0" spacing="2.0">
+                  <HBox prefHeight="28.0" prefWidth="285.0" spacing="10.0">
                      <children>
                         <Label alignment="CENTER" prefHeight="27.0" prefWidth="50.0" text="Image">
                            <font>
                               <Font size="16.0" />
                            </font>
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin>
                         </Label>
-                        <TextField fx:id="tfImage" disable="true" editable="false" prefHeight="27.0" prefWidth="169.0" />
-                        <JFXButton onAction="#GetPhoto" prefHeight="30.0" prefWidth="68.0" style="-fx-border-color: white; -fx-background-color: skyblue;" text="Importer" />
+                        <JFXButton onAction="#GetPhoto" prefHeight="30.0" prefWidth="68.0" style="-fx-border-color: white; -fx-background-color: skyblue;" text="Importer">
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin></JFXButton>
+                        <ImageView fitHeight="52.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>
@@ -80,11 +79,9 @@
             </HBox>
          </children>
       </VBox>
-      <JFXButton fx:id="btnvalider" layoutX="182.0" layoutY="419.0" onAction="#Affecter" style="-fx-background-color: black;" text="Valider" textFill="WHITE" />
+      <JFXButton fx:id="btnvalider" layoutX="193.0" layoutY="463.0" onAction="#Affecter" style="-fx-background-color: black;" text="Valider" textFill="WHITE" />
       <ScrollPane fx:id="spIngredient" layoutX="493.0" layoutY="285.0" prefHeight="200.0" prefWidth="380.0" />
-      <JFXTextField fx:id="qtt" alignment="CENTER" labelFloat="true" layoutX="176.0" layoutY="211.0" prefHeight="25.0" prefWidth="65.0" promptText="Quantité" style="-fx-background-color: skyblue;" />
-      <JFXButton fx:id="ajouter" layoutX="196.0" layoutY="252.0" onAction="#ajouter" style="-fx-background-color: orange;" text="&gt;" />
-      <VBox layoutX="21.0" layoutY="86.0" prefHeight="300.0" prefWidth="140.0" spacing="5.0">
+      <VBox layoutX="23.0" layoutY="65.0" prefHeight="371.0" prefWidth="140.0" spacing="5.0">
          <children>
             <HBox prefHeight="40.0" prefWidth="136.0" style="-fx-border-color: #C39BD3;">
                <children>
@@ -100,10 +97,10 @@
                   </Label>
                </children>
             </HBox>
-            <JFXListView fx:id="listNom" prefHeight="250.0" prefWidth="135.0" />
+            <JFXListView fx:id="listNom" prefHeight="325.0" prefWidth="140.0" />
          </children>
       </VBox>
-      <VBox layoutX="255.0" layoutY="86.0" prefHeight="300.0" prefWidth="170.0" spacing="5.0">
+      <VBox layoutX="280.0" layoutY="65.0" prefHeight="371.0" prefWidth="170.0" spacing="5.0">
          <children>
             <HBox prefHeight="40.0" prefWidth="136.0" style="-fx-border-color: #C39BD3;">
                <children>
@@ -119,9 +116,22 @@
                   </Label>
                </children>
             </HBox>
-            <JFXListView fx:id="listRecette" prefHeight="253.0" prefWidth="145.0" />
+            <JFXListView fx:id="listRecette" prefHeight="325.0" prefWidth="170.0" />
          </children>
       </VBox>
-      <JFXButton layoutX="198.0" layoutY="284.0" onAction="#DeleteFromRecette" style="-fx-background-color: red;" text="x" />
+      <VBox layoutX="169.0" layoutY="234.0" prefHeight="62.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <JFXTextField fx:id="qtt" alignment="CENTER" labelFloat="true" prefHeight="25.0" prefWidth="77.0" promptText="Quantité" style="-fx-background-color: skyblue;" />
+            <HBox prefHeight="27.0" prefWidth="50.0" spacing="10.0">
+               <children>
+                  <JFXButton onAction="#DeleteFromRecette" style="-fx-background-color: red;" text="x" />
+                  <JFXButton fx:id="ajouter" onAction="#ajouter" style="-fx-background-color: orange;" text="&gt;" />
+               </children>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

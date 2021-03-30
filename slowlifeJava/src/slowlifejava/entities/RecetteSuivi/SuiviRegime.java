@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities.RecetteSuivi;
+package slowlifejava.entities.RecetteSuivi;
 
+import entities.users.Utilisateur;
 import java.util.Date;
 import java.util.Objects;
 
@@ -20,7 +21,7 @@ public class SuiviRegime {
     private int heursActivite;
     private int consommationEau;
     private float IMC;
-    private User user;
+    private Utilisateur user;
 
     public SuiviRegime() {
     }
@@ -36,11 +37,39 @@ public class SuiviRegime {
         this.consommationEau = consommationEau;
     }
 
+    public SuiviRegime(int idSuivi, int poid, Float taille, int heursActivite, int consommationEau, float IMC) {
+        this.idSuivi = idSuivi;
+        this.poid = poid;
+        this.taille = taille;
+        this.heursActivite = heursActivite;
+        this.consommationEau = consommationEau;
+        this.IMC = IMC;
+    }
+
+    public SuiviRegime(Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau, float IMC) {
+        this.dateSuivi = dateSuivi;
+        this.poid = poid;
+        this.taille = taille;
+        this.heursActivite = heursActivite;
+        this.consommationEau = consommationEau;
+        this.IMC = IMC;
+    }
+
+    public SuiviRegime(int idSuivi, Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau, float IMC) {
+        this.idSuivi = idSuivi;
+        this.dateSuivi = dateSuivi;
+        this.poid = poid;
+        this.taille = taille;
+        this.heursActivite = heursActivite;
+        this.consommationEau = consommationEau;
+        this.IMC = IMC;
+    }
+
     public SuiviRegime(Date dateSuivi) {
         this.dateSuivi = dateSuivi;
     }
     
-    public SuiviRegime(int idSuivi, Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau,float IMC, User idUser) {
+    public SuiviRegime(int idSuivi, Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau,float IMC, Utilisateur idUser) {
        
         this.idSuivi = idSuivi;
         this.dateSuivi = dateSuivi;
@@ -52,7 +81,7 @@ public class SuiviRegime {
         this.user=idUser;
     }
 
-    public SuiviRegime(int idSuivi, Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau, User user) {
+    public SuiviRegime(int idSuivi, Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau, Utilisateur user) {
         this.idSuivi = idSuivi;
         this.dateSuivi = dateSuivi;
         this.poid = poid;
@@ -63,7 +92,7 @@ public class SuiviRegime {
     }
 
 
-    public SuiviRegime(Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau, User idUser) {
+    public SuiviRegime(Date dateSuivi, int poid, Float taille, int heursActivite, int consommationEau, Utilisateur idUser) {
         this.dateSuivi = dateSuivi;
         this.poid = poid;
         this.taille = taille;
@@ -111,7 +140,7 @@ public class SuiviRegime {
         return consommationEau;
     }
 
-    public User getUser() {
+    public Utilisateur getUser() {
         return user;
     }
 
@@ -140,7 +169,7 @@ public class SuiviRegime {
         this.consommationEau = consommationEau;
     }
 
-    public void User(User idUser) {
+    public void User(Utilisateur idUser) {
         this.user = idUser;
     }
 
@@ -161,8 +190,5 @@ public class SuiviRegime {
         final SuiviRegime other = (SuiviRegime) obj;
         return Objects.equals(this.dateSuivi, other.dateSuivi);
     }
-    
-    
-    
-    
+
 }

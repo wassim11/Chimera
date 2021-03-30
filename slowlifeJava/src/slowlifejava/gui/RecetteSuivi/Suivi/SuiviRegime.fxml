@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -24,7 +25,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="442.0" layoutY="243.0" prefHeight="50.0" prefWidth="100.0">
+      <VBox layoutX="388.0" layoutY="200.0" prefHeight="50.0" prefWidth="100.0">
          <children>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="130.0" text="Tri par">
                <font>
@@ -43,75 +44,65 @@
             </JFXCheckBox>
          </children>
       </VBox>
-      <HBox layoutX="606.0" layoutY="278.0" prefHeight="28.0" prefWidth="250.0" spacing="10.0">
+      <HBox layoutX="607.0" layoutY="229.0" prefHeight="28.0" prefWidth="250.0" spacing="10.0">
          <children>
             <JFXDatePicker fx:id="DateD" defaultColor="#00ffe5" onHidden="#Datedebut" />
             <JFXDatePicker fx:id="DateF" defaultColor="#00ffe5" onHidden="#DateFin" />
          </children>
       </HBox>
-      <VBox layoutX="14.0" layoutY="265.0" prefHeight="300.0" prefWidth="383.0" spacing="15.0">
+      <VBox layoutX="14.0" layoutY="243.0" prefHeight="300.0" prefWidth="374.0" spacing="15.0">
          <children>
-            <HBox prefHeight="217.0" prefWidth="383.0">
+            <HBox prefHeight="217.0" prefWidth="297.0">
                <children>
-                  <VBox prefHeight="171.0" prefWidth="131.0" spacing="18.0">
+                  <VBox prefHeight="177.0" prefWidth="90.0" spacing="10.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="154.0" text="Taille">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="171.0" text="Poids">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="140.0" text="Durée d'activité">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="176.0" text="Consommation en eau">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
+                        <HBox prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="lbTaille" alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="Taille" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="Poids" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="Activité" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label alignment="CENTER" prefHeight="40.0" prefWidth="60.0" text="Eau">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
                   </VBox>
-                  <VBox prefHeight="217.0" prefWidth="158.0" spacing="19.0">
+                  <VBox prefHeight="217.0" prefWidth="187.0" spacing="30.0">
                      <children>
-                        <JFXSlider fx:id="SlTaille" majorTickUnit="20.0" max="220.0" min="100.0" showTickLabels="true" stylesheets="@SliderRed.css" value="160.0" />
-                        <JFXSlider fx:id="SlPoids" blockIncrement="1.0" majorTickUnit="20.0" max="220.0" min="20.0" minorTickCount="5" showTickLabels="true" stylesheets="@SliderBlue.css" value="120.0" />
-                        <JFXSlider fx:id="SlActivite" majorTickUnit="60.0" max="180.0" minorTickCount="6" showTickLabels="true" showTickMarks="true" stylesheets="@SliderMarron.css" value="90.0" />
-                        <JFXSlider fx:id="Slconso" majorTickUnit="1.0" max="10.0" minorTickCount="1" showTickLabels="true" value="5.0" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="150.0" prefWidth="81.0" spacing="23.0">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="83.0" text="Cm">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="82.0" text="Kg">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="27.0" prefWidth="82.0" text="Minutes">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="90.0" text="L">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
+                        <JFXTextField fx:id="tfTaille" prefHeight="30.0" promptText="Taille" />
+                        <JFXTextField fx:id="tfPoids" prefHeight="30.0" promptText="Poids" />
+                        <JFXSlider fx:id="SlActivite" majorTickUnit="1.0" max="7.0" minorTickCount="0" prefHeight="30.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" stylesheets="@SliderMarron.css" value="3.0" />
+                        <JFXSlider fx:id="Slconso" majorTickUnit="1.0" max="6.0" minorTickCount="1" prefHeight="30.0" showTickLabels="true" value="3.0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="393.0" spacing="30.0">
+            <HBox prefHeight="50.0" prefWidth="313.0" spacing="30.0">
                <children>
                   <ImageView fx:id="btnInsert" fitHeight="38.0" fitWidth="38.0" onMouseClicked="#InsertSuivi" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -141,6 +132,25 @@
             </HBox>
          </children>
       </VBox>
-      <ScrollPane fx:id="sp" layoutX="394.0" layoutY="322.0" prefHeight="360.0" prefWidth="500.0" />
+      <ScrollPane fx:id="sp" layoutX="388.0" layoutY="287.0" prefHeight="399.0" prefWidth="500.0" />
+      <HBox layoutX="14.0" layoutY="569.0" prefHeight="100.0" prefWidth="323.0" spacing="25.0">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#Suivi" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../sousmenu/Suivi.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#Stat" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../sousmenu/Avancement.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#IMC" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ImagesSuivi/bmi.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

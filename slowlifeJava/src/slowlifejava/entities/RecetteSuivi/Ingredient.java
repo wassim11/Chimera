@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities.RecetteSuivi;
+package slowlifejava.entities.RecetteSuivi;
 
 /**
  *
@@ -14,6 +14,15 @@ public class Ingredient {
     private String nom;
     private String image;
     private int calories;
+    private String unite;
+
+    public String getUnite() {
+        return unite;
+    }
+
+    public void setUnite(String unite) {
+        this.unite = unite;
+    }
 
   
 
@@ -32,17 +41,19 @@ public class Ingredient {
         this.image = image;
     }
 
-    public Ingredient(int id, String nom,String image,int calories) {
+    public Ingredient(int id, String nom,String image,int calories,String unite) {
         this.id = id;
         this.nom = nom;
         this.image = image;
         this.calories = calories;
+        this.unite=unite;
     }
 
-    public Ingredient(String nom, String image, int calories) {
+    public Ingredient(String nom, String image, int calories,String unite) {
         this.nom = nom;
         this.image = image;
         this.calories = calories;
+        this.unite=unite;
     }
 
     public Ingredient() {
@@ -93,26 +104,4 @@ public class Ingredient {
     public String toString() {
         return nom;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Ingredient other = (Ingredient) obj;
-        return this.nom.equals(other.getNom());
-    }
-
-     
-
-
 }

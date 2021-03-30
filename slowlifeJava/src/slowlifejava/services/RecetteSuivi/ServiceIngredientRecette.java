@@ -5,10 +5,10 @@
  */
 package slowlifejava.services.RecetteSuivi;
 
-import entities.RecetteSuivi.Ingredient;
-import entities.RecetteSuivi.IngredientRecette;
-import entities.RecetteSuivi.Recette;
-import entities.RecetteSuivi.User;
+import slowlifejava.entities.RecetteSuivi.Ingredient;
+import slowlifejava.entities.RecetteSuivi.IngredientRecette;
+import slowlifejava.entities.RecetteSuivi.Recette;
+//import slowlifejava.entities.RecetteSuivi.User;
 //import Utils.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -99,16 +99,16 @@ public class ServiceIngredientRecette{
                 + "ingredientrecette.Quantite,CONCAT(ingredient.nom ,'(',ingredient.typeIng,')') as Ingredients "
                 + "FROM ((ingredientrecette INNER JOIN ingredient ON ingredientrecette.idIngredient = ingredient.idIng) "
                 + "INNER JOIN recette ON recette.idRecette  = ingredientrecette.idRecette);";*/
-        String SQL="SELECT recette.idRecette,recette.nomRecette, recette.image as imager,ingredient.image,  recette.typeRecette, recette.description,"
-                + "ingredientrecette.Quantite,ingredient.nom as Ingredients "
+        String SQL="SELECT recette.idRecette,recette.nomRecette,ingredient.calorie, recette.image as imager,ingredient.image,  recette.typeRecette, recette.description,"
+                + "ingredientrecette.Quantite,ingredient.unite,ingredient.nom as Ingredients "
                 + "FROM ((ingredientrecette INNER JOIN recette ON (recette.idRecette  = ingredientrecette.idRecette AND ingredientrecette.idRecette="+id.getIdRecette()+")"
                 + ")INNER JOIN ingredient ON ingredientrecette.idIngredient = ingredient.id) "
                 + ";";
         ResultSet result =  ste.executeQuery(SQL);
          while(result.next()){
-            Ingredient ing = new Ingredient(result.getString("Ingredients"),result.getString("ingredient.image"));
-            Recette rct = new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("imager"), new User(1));
-             System.out.println("imager"+result.getString("imager"));
+            Ingredient ing = new Ingredient(result.getString("Ingredients"),result.getString("ingredient.image"),result.getInt("calorie"),result.getString("unite"));
+            Recette rct = new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("imager"));
+            System.out.println("imager"+result.getString("imager"));
             IngredientsRecette.add(new IngredientRecette(rct,ing,result.getInt("Quantite")));
            
         }
@@ -117,21 +117,23 @@ public class ServiceIngredientRecette{
         {
             System.out.println("Affichage IngredientsRecette impossible"+ SQLex);
         }
-       return IngredientsRecette;    }
-public List readAll2() throws SQLException {
-        List<IngredientRecette> IngredientsRecette = new ArrayList<>();
+       return IngredientsRecette;    
+    }
+    
+        public List readAllByIngredient(Ingredient Ing) throws SQLException {
+            
+        List<String> IngredientsRecette = new ArrayList<>();
         ste=cnx.createStatement();
         try{
-                String SQL="SELECT recette.idRecette,recette.nomRecette,recette.image, recette.typeRecette, recette.description,"
-                + "ingredientrecette.Quantite,CONCAT(ingredient.nomIng ,'(',ingredient.typeIng,')') as Ingredients "
-                + "FROM ((ingredientrecette INNER JOIN ingredient ON ingredientrecette.idIngredient = ingredient.idIng) "
+                
+                String SQL="SELECT recette.idRecette,recette.nomRecette,ingredient.nom "
+                + "FROM ((ingredientrecette INNER JOIN ingredient ON ingredientrecette.idIngredient = ingredient.id && ingredient.nom like '"+Ing.getNom()+"%') "
                 + "INNER JOIN recette ON recette.idRecette  = ingredientrecette.idRecette);";
-        
-        ResultSet result =  ste.executeQuery(SQL);
-         while(result.next()){
-            Ingredient ing = new Ingredient(result.getString("Ingredients"),result.getString("Ingredients"));
-            Recette rct = new Recette(result.getInt("idRecette"),result.getString("nomRecette"),result.getString("description"),result.getString("typeRecette"),result.getString("image"),new User(1));
-            IngredientsRecette.add(new IngredientRecette(rct,ing,result.getInt("Quantite")));
+                System.out.println(SQL);
+             ResultSet result =  ste.executeQuery(SQL);
+            while(result.next()){
+            Recette rct = new Recette();
+            IngredientsRecette.add(result.getString("nomRecette"));
            
         }
         }
@@ -139,14 +141,60 @@ public List readAll2() throws SQLException {
         {
             System.out.println("Affichage IngredientsRecette impossible"+ SQLex);
         }
-       return IngredientsRecette;    }
+       return IngredientsRecette;    
+        }
+       public List readAllByNotIngredient(Ingredient Ing) throws SQLException {     
+        List<String> IngredientsRecette = new ArrayList<>();
+        ste=cnx.createStatement();
+        try{
+                
+                String SQL="SELECT recette.idRecette,recette.nomRecette,ingredient.nom "
+                + "FROM ((ingredientrecette INNER JOIN ingredient ON ingredientrecette.idIngredient = ingredient.id && ingredient.id != (select id from ingredient where nom like '"+Ing.getNom()+"')) "
+                + "INNER JOIN recette ON recette.idRecette  = ingredientrecette.idRecette) group by recette.nomRecette;";
+                System.out.println(SQL);
+             ResultSet result =  ste.executeQuery(SQL);
+            while(result.next()){
+            Recette rct = new Recette();
+            IngredientsRecette.add(result.getString("nomRecette"));
+           
+        }
+        }
+        catch(SQLException SQLex)
+        {
+            System.out.println("Affichage IngredientsRecette impossible"+ SQLex);
+        }
+       return IngredientsRecette;    
+        }
+        public List VerifByIngredient(Ingredient Ing) throws SQLException {    
+        List<String> IngredientsRecette = new ArrayList<>();
+        ste=cnx.createStatement();
+        try{
+                String SQL="SELECT recette.idRecette,recette.nomRecette,ingredient.nom "
+                + "FROM ((ingredientrecette INNER JOIN ingredient ON ingredientrecette.idIngredient = ingredient.id && ingredient.nom='"+Ing.getNom()+"') "
+                + "INNER JOIN recette ON recette.idRecette  = ingredientrecette.idRecette);";
+                System.out.println(SQL);
+             ResultSet result =  ste.executeQuery(SQL);
+            while(result.next()){
+            Recette rct = new Recette();
+            IngredientsRecette.add(result.getString("nomRecette"));
+           
+        }
+        }
+        catch(SQLException SQLex)
+        {
+            System.out.println("Affichage IngredientsRecette impossible"+ SQLex);
+        }
+       return IngredientsRecette;    
+        }
+        
+        
     public boolean Recherche(IngredientRecette t) throws SQLException {
         ste=cnx.createStatement();
         try{
         ResultSet result =  ste.executeQuery("select * from `slowlife`. `ingredientrecette`");
          while(result.next()){
            IngredientRecette ingrecettebdd= new IngredientRecette(null,null,result.getInt("Quantite"));
-            return t.equals(ingrecettebdd); // update(new IngredientRecette(ingrecettebdd.getIdRecette(),ingrecettebdd.getIdIngredient(),ingrecettebdd.getQuantite()+t.getQuantite()));
+           return t.equals(ingrecettebdd); // update(new IngredientRecette(ingrecettebdd.getIdRecette(),ingrecettebdd.getIdIngredient(),ingrecettebdd.getQuantite()+t.getQuantite()));
         }
         }
         catch(SQLException SQLex)

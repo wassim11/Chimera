@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities.RecetteSuivi;
+package slowlifejava.entities.RecetteSuivi;
 
 /**
  *
@@ -15,7 +15,7 @@ public class IngredientRecette {
     private Recette rct;
     private Ingredient ing;
     private int quantite;
-    private float Calories;
+    
     public IngredientRecette() {
     }
 
@@ -48,11 +48,9 @@ public class IngredientRecette {
     public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
-
     @Override
     public String toString() {
         return "\n IngredientRecette{" + "rct=" + rct + "ing=" + ing + "quantite=" + quantite + '}';
     }
-
-    
+  
 }

@@ -5,10 +5,11 @@
  */
 package slowlifejava.gui.RecetteSuivi.Recette;
 
-import entities.RecetteSuivi.Ingredient;
-import entities.RecetteSuivi.IngredientRecette;
-import entities.RecetteSuivi.Recette;
+import slowlifejava.entities.RecetteSuivi.Ingredient;
+import slowlifejava.entities.RecetteSuivi.IngredientRecette;
+import slowlifejava.entities.RecetteSuivi.Recette;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
@@ -23,12 +24,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -67,10 +71,9 @@ public class IngredientController implements Initializable {
     @FXML
     private AnchorPane anchorid;
     @FXML
-    private JFXSlider Calorie;
+    private JFXTextField Calorie;
     @FXML
     private JFXTextField qtt;
-    @FXML
     private TextField tfImage;
     @FXML
     private JFXListView<Label> listNom;
@@ -81,12 +84,13 @@ public class IngredientController implements Initializable {
     @FXML
     private JFXButton btnvalider;
     
-    
+    private List<String> listeIng;
     static List<String> liste;
     private VBox Area;
     private String filePath;
     private int id;
-    private boolean modifier=false;
+    @FXML
+    private JFXComboBox<String> unite;
     /**
      * Initializes the controller class.
      * @param url
@@ -95,7 +99,11 @@ public class IngredientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
           Area = new VBox();
-          
+          listeIng = new ArrayList<>();
+           ObservableList<String> options = FXCollections.observableArrayList("1 gramme","1 cl","100 gramme","100 cl","1 Càs","1 paquet");
+           options.sorted();
+           unite.getItems().addAll(options);
+           filePath=null;
         try {
             showListeNom();
             showIngredient();
@@ -124,16 +132,20 @@ public class IngredientController implements Initializable {
     private void InsertButtonAction(MouseEvent event) throws SQLException, FileNotFoundException {
         IngredientService IS = new IngredientService();
         if(!IS.Recherche(new Ingredient(tfNom.getText()))){
-        IS.ajouter(new Ingredient(tfNom.getText(),filePath,(int)Calorie.getValue()));
+        IS.ajouter(new Ingredient(tfNom.getText(),filePath,Integer.parseInt(Calorie.getText()),unite.getValue()));
         showIngredient();
+        listNom.getItems().clear();
+        showListeNom();
         }
     }
 
     @FXML
     private void UpdateButtonAction(MouseEvent event) throws SQLException, FileNotFoundException {
         IngredientService IS = new IngredientService();
-        IS.update(new Ingredient(id,tfNom.getText(),filePath,(int)Calorie.getValue()));
+        IS.update(new Ingredient(id,tfNom.getText(),filePath,Integer.parseInt(Calorie.getText()),unite.getValue()));
         showIngredient();
+        listNom.getItems().clear();
+        showListeNom();
     }
 
     @FXML
@@ -141,6 +153,8 @@ public class IngredientController implements Initializable {
         IngredientService IS = new IngredientService();
         IS.delete(new Ingredient(id));
         showIngredient();
+        listNom.getItems().clear();
+        showListeNom();
     }
       private ImageView initializeImages(InputStream URL,int longueur,int largeur){
       Image Poids = new Image(URL);
@@ -150,30 +164,30 @@ public class IngredientController implements Initializable {
       imageview.setFitWidth(largeur);
       return imageview;
     }
-        private void showIngredient() throws FileNotFoundException, SQLException{
-            VBox Liste = new VBox();
-            Liste.setSpacing(2);
-            IngredientService IS = new IngredientService();
-            List<Ingredient> list=IS.readAll();
+    private void showIngredient() throws FileNotFoundException, SQLException{
+        VBox Liste = new VBox();
+        Liste.setSpacing(2);
+        IngredientService IS = new IngredientService();
+        List<Ingredient> list=IS.readAll();
             
-            for(int i=0;i<list.size();i++){
-             HBox Ligne = new HBox();
-             Ligne.setSpacing(5);
+        for(int i=0;i<list.size();i++){
+        HBox Ligne = new HBox();
+        Ligne.setSpacing(5);
                 
-             HBox NomImage = new HBox();
-             NomImage.setSpacing(2);
+        HBox NomImage = new HBox();
+        NomImage.setSpacing(2);
              
-            Ligne.setPrefSize(360, 50);
-            Ligne.setPadding(Insets.EMPTY);
-            Ligne.setBackground(new Background(
-            new BackgroundFill(
-            Color.color(
-                Color.YELLOW.getRed(), 
-                Color.YELLOW.getGreen(), 
-                Color.YELLOW.getBlue(), 0.4d),
-                new CornerRadii(5), null)));
-             InputStream stream = new FileInputStream(list.get(i).getImage());
-             ImageView imageRecette = initializeImages(stream,50,50);
+        Ligne.setPrefSize(360, 50);
+        Ligne.setPadding(Insets.EMPTY);
+        Ligne.setBackground(new Background(
+        new BackgroundFill(
+        Color.color(
+        Color.YELLOW.getRed(), 
+        Color.YELLOW.getGreen(), 
+        Color.YELLOW.getBlue(), 0.4d),
+        new CornerRadii(5), null)));
+        InputStream stream = new FileInputStream(list.get(i).getImage());
+        ImageView imageRecette = initializeImages(stream,50,50);
              
              Label Titre = new Label(list.get(i).getNom());
              Titre.setPrefSize(200,65);
@@ -181,18 +195,21 @@ public class IngredientController implements Initializable {
              
              NomImage.getChildren().addAll(imageRecette,Titre);
              
-             Label calorie = new Label(String.valueOf(list.get(i).getCalories()+" kcal/100g"));
+             Label calorie = new Label(String.valueOf(list.get(i).getCalories()+" Cal/"+list.get(i).getUnite()));
              calorie.setPrefSize(200,75);
              calorie.setAlignment(Pos.CENTER);
              
              Ligne.getChildren().addAll(NomImage,calorie);
              Liste.setOnMouseClicked(click->{
                  
-                 int nb = (int)click.getY()/69;
-                 id=nb;
-                 tfNom.setText(list.get(id).getNom());
-                 tfImage.setText(list.get(id).getImage());
-                 Calorie.setValue(list.get(id).getCalories());
+                 int nb = (int)click.getY()/52;
+                 System.out.println(click.getY());
+                 System.out.println(nb);
+                 id=list.get(nb).getId();
+                 tfNom.setText(list.get(nb).getNom());
+                 filePath=list.get(nb).getImage();
+                 Calorie.setText(String.valueOf(list.get(nb).getCalories()));
+                 unite.getSelectionModel().select(String.valueOf(list.get(nb).getUnite()));
               
                  
              });
@@ -203,7 +220,7 @@ public class IngredientController implements Initializable {
 
     @FXML
     private void GetPhoto(ActionEvent event) {
-         final FileChooser filechooser = new FileChooser();
+        final FileChooser filechooser = new FileChooser();
         Stage stage = (Stage) anchorid.getScene().getWindow();
         filechooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"),
@@ -214,8 +231,6 @@ public class IngredientController implements Initializable {
         if(file!=null)
         {   
             filePath=file.getAbsolutePath();
-            //System.out.println("Path ="+file.getAbsolutePath());
-           
         }
         if(file==null)
         {
@@ -254,13 +269,25 @@ public class IngredientController implements Initializable {
             System.out.println("pas d'input here");
         }
         if(Qt!=0 && listNom.getSelectionModel().getSelectedItem()!=null){
-        //Liste 
+        if(listeIng.contains(listNom.getSelectionModel().getSelectedItem().getText()))
+        {  
+            System.out.println("existe deja");
+        }
+        else
+        {
+            System.out.println("nouveau ingredient");
+        }
         IngredientService IS = new IngredientService();
-        String Ingr=Qt+"g "+listNom.getSelectionModel().getSelectedItem().getText();
+        String[] unitee = IS.RechercheParNom(new Ingredient(listNom.getSelectionModel().getSelectedItem().getText())).getUnite().split("\\s+");
+        String Ingr=Qt+unitee[1]+" "+listNom.getSelectionModel().getSelectedItem().getText();
         Label Ing = new Label();
         String img = IS.RechercheImageParNom(new Ingredient(listNom.getSelectionModel().getSelectedItem().getText()));
         Ing.setGraphic(InitializeImageStream(new FileInputStream(img)));
         Ing.setText(Ingr);
+      
+         
+        listeIng.add(listNom.getSelectionModel().getSelectedItem().getText());
+        System.out.println(listNom.getSelectionModel().getSelectedItem().getText());
         listRecette.getItems().add(Ing);
         qtt.setText("");
         }
@@ -274,6 +301,7 @@ public class IngredientController implements Initializable {
 
     @FXML
     private void Affecter(ActionEvent event) {
+        if(!listRecette.getItems().isEmpty()){
         List<String> Affecter= new ArrayList<>();
         for(int i=0;i<listRecette.getItems().size();i++){
         Affecter.add(listRecette.getItems().get(i).getText());
@@ -281,10 +309,20 @@ public class IngredientController implements Initializable {
         liste=Affecter;
         Stage stage = (Stage) btnvalider.getScene().getWindow();
         stage.close();
+        }
+        else
+        {
+           Alert EmptyRecette = new Alert(Alert.AlertType.ERROR);
+           EmptyRecette.setTitle("Recette vide");
+           EmptyRecette.setHeaderText("La Recette que vous voulez mettre est vide");
+           EmptyRecette.setContentText("Vous devez mettre des ingredients dans la recette");
+           EmptyRecette.show();
+           
+        }
+        
     }
     public void LoadRecette(int id) throws SQLException, FileNotFoundException
     {
-        modifier=true;
         ServiceIngredientRecette SIR = new ServiceIngredientRecette();
         List<IngredientRecette> LIR = SIR.readAll(new Recette(id));
         if(!LIR.isEmpty())
@@ -295,7 +333,31 @@ public class IngredientController implements Initializable {
                 Image.setGraphic(InitializeImageStream(new FileInputStream(I.getIng().getImage())));
                 Image.setText(I.getQuantite()+"g "+I.getIng().getNom());
                 listRecette.getItems().add(Image);
+                listeIng.add(I.getIng().getNom());
             }
         }
     }
+
+      private boolean controledesaisieNumber(JFXTextField tf,String Pattern)
+      {
+        if(tf.getText().isEmpty() || !tf.getText().matches("^([0-9][0-9][0-9])$"))
+        {
+            return false;
+        }
+        return true;
+    }
+      private boolean controledesaisieCB(ComboBox cb)
+      {
+          if(cb.getSelectionModel().getSelectedItem()==null){
+              return false;
+          }
+        return true;
+      }
+       private boolean controledesaisieTexte(TextField tf)
+      {
+          if(tf.getText().isEmpty() || tf.getText().length()>30){
+              return false;
+          }
+        return true;
+      }
 }

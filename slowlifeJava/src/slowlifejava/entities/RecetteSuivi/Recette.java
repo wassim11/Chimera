@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities.RecetteSuivi;
+package slowlifejava.entities.RecetteSuivi;
+
+import entities.users.Utilisateur;
 
 /**
  *
@@ -16,8 +18,10 @@ public class Recette {
    private String typeRecette;
    private String image;
    private String etat;
-   private User user;
-   public static int id;
+   private Utilisateur user;
+   
+   
+   
     public Recette() {
     }
 
@@ -60,7 +64,7 @@ public class Recette {
 
     
 
-    public Recette(String nomRecette, String description, String typeRecette,String image,String etat,User user) {
+    public Recette(String nomRecette, String description, String typeRecette,String image,String etat,Utilisateur user) {
         this.nomRecette = nomRecette;
         this.description = description;
         this.typeRecette = typeRecette;
@@ -69,7 +73,7 @@ public class Recette {
         this.user=user;
     }
 
-    public Recette(int idRecette, String nomRecette, String description, String typeRecette,String image,String etat,User user) {
+    public Recette(int idRecette, String nomRecette, String description, String typeRecette,String image,String etat,Utilisateur user) {
         this.idRecette = idRecette;
         this.nomRecette = nomRecette;
         this.description = description;
@@ -80,7 +84,7 @@ public class Recette {
     }
 
 
-    public Recette(int idRecette, String nomRecette, String description, String typeRecette,String image,User user) {
+    public Recette(int idRecette, String nomRecette, String description, String typeRecette,String image,Utilisateur user) {
         this.idRecette = idRecette;
         this.nomRecette = nomRecette;
         this.description = description;
@@ -88,11 +92,11 @@ public class Recette {
         this.image=image;
     }
 
-    public User getUser() {
+    public Utilisateur getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Utilisateur user) {
         this.user = user;
     }
 
@@ -147,12 +151,7 @@ public class Recette {
 
     @Override
     public String toString() {
-        return nomRecette ;
+        return "Recette{" + "idRecette=" + idRecette + ", nomRecette=" + nomRecette + ", description=" + description + ", typeRecette=" + typeRecette + ", image=" + image + ", etat=" + etat + ", user=" + user + '}';
     }
-
-
-    
-
-  
     
 }

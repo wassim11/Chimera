@@ -40,10 +40,9 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField focusColor="ORANGE" promptText="Nom de la Recette" />
-                                    <JFXTextField focusColor="RED" promptText="Avec (Ingredient)" />
-                                    <JFXTextField promptText="Sans (Ingredient)" />
-                                    <JFXButton text="Je lance ma recherche">
+                                    <JFXTextField fx:id="avecingredient" focusColor="RED" promptText="Avec (Ingredient)" />
+                                    <JFXTextField fx:id="sansingredient" promptText="Sans (Ingredient)" />
+                                    <JFXButton fx:id="btnrecherche1" onAction="#recherche1" text="Je lance ma recherche">
                                        <VBox.margin>
                                           <Insets left="35.0" />
                                        </VBox.margin>
@@ -64,10 +63,9 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField promptText="Ingredient" />
-                                    <JFXTextField focusColor="ORANGE" promptText="Ingredient" />
-                                    <JFXTextField focusColor="RED" promptText="Ingredient" />
-                                    <JFXButton text="Je lance ma recherche">
+                                    <JFXTextField fx:id="ingredient1" focusColor="SKYBLUE" promptText="Ingredient" />
+                                    <JFXTextField fx:id="ingredient2" focusColor="ORANGE" promptText="Ingredient" />
+                                    <JFXButton fx:id="btnrecherche2" onAction="#recherche2" text="Je lance ma recherche">
                                        <VBox.margin>
                                           <Insets left="35.0" />
                                        </VBox.margin>
@@ -82,7 +80,7 @@
                               </VBox>
                            </children>
                            <VBox.margin>
-                              <Insets top="30.0" />
+                              <Insets bottom="10.0" top="30.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
