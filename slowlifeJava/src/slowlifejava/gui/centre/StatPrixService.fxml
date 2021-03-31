@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.centre.StatPrixServiceController">
+   <children>
+      <LineChart fx:id="Statpserv" animated="false" layoutX="31.0" layoutY="172.0" prefHeight="304.0" prefWidth="493.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" fx:id="xstatpserv" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="ystatpserv" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <ComboBox fx:id="nomservicestat" layoutX="240.0" layoutY="55.0" onAction="#ChangerComparerPrix" prefWidth="150.0" styleClass="combob" />
+      <Label layoutX="69.0" layoutY="60.0" text="Nom du Service:" textFill="#65c958" />
+      <TableView fx:id="tableServicef" layoutX="624.0" layoutY="53.0" prefHeight="402.0" prefWidth="340.0">
+        <columns>
+          <TableColumn fx:id="colnom" prefWidth="89.4169921875" text="Nom" />
+          <TableColumn fx:id="coltype" prefWidth="88.24224853515625" text="Type" />
+            <TableColumn fx:id="coldesc" prefWidth="171.75775146484375" text="Description" />
+        </columns>
+      </TableView>
+      <Button layoutX="826.0" layoutY="460.0" mnemonicParsing="false" onAction="#selectService" text="Selectionner" />
+      <TextField fx:id="RechercheService" layoutX="606.0" layoutY="22.0" promptText="Rechercher Par Nom" />
+   </children>
+</AnchorPane>
