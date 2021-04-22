@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block f2 %} class="active" {% endblock %}
+{% block body %}
+
+<div class="pcoded-content">
+ <div class="pcoded-inner-content">
+  <div class="">
+
+
+
+    {% if Homme is defined %}
+    <br> </br>
+    <br> </br>
+    <h2> <center>Statistics </center></h2>
+
+
+    <!--CUSTOM CHART START -->
+    <div class="border-head">
+      <h3>Statistique Genre</h3>
+    </div>
+
+    {% set total= Homme|length + Femme|length %}
+
+    {% set Homme= ( Homme|length *100 )/ total %}
+    {% set Femme= ( Femme|length *100 )/ total %}
+
+
+    {% set total= 3|length +2|length %}
+
+    {% set Coach= ( 2|length *100 )/ total %}
+    {% set Client= ( 3|length *100 )/ total %}
+
+    <div class="c3-chart-arcs">
+    
+      <div class="c3-chart-arcs">
+        <div class="title">Homme :</div>
+        <div class="value tooltips"  data-toggle="tooltip" data-placement="top">{{ Homme }}%</div>
+      </div>
+      <div class="c3-chart-arcs">
+        <div class="title">Femme :</div>
+        <div class="value tooltips" data-toggle="tooltip" data-placement="top">{{ Femme }}%</div>
+      </div>
+
+
+<div class="border-head">
+      <h3>Statistique Type</h3>
+    </div>
+    </div>
+    <div class="c3-chart-arcs">
+      <div class="c3-chart-arcs">
+        <div class="title">Coach :</div>
+        <div class="value tooltips"  data-toggle="tooltip" data-placement="top">{{ Coach }}%</div>
+      </div>
+      <div class="c3-chart-arcs">
+        <div class="title">Client :</div>
+        <div class="value tooltips" data-toggle="tooltip" data-placement="top">{{ Client }}%</div>
+      </div>
+    {% endif %}
+     </div>
+
+    </div>
+{% endblock %}
