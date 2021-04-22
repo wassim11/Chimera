@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SlowLife</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Inscription</h2>
+
+                 {{ form_start(form1,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+                            <div class="form-group">
+                            {{ form_errors(form1.nom) }}
+                            {{ form_widget(form1.nom,{'attr': {'class': 'zmdi zmdi-account ' , 'placeholder' : 'NOM'}}) }}
+                              <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            </div>
+
+                            <div class="form-group">
+                            {{ form_errors(form1.prenom) }}
+                            {{ form_widget(form1.prenom,{'attr': {'class': 'zmdi zmdi-account ' , 'placeholder' : 'PRENOM'}}) }}
+                               <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            </div>
+
+                             <div class="form-group">
+                            
+                            {{ form_errors(form1.email) }}
+                            {{ form_widget(form1.email,{'attr': {'class': 'zmdi zmdi-account ' , 'placeholder' : 'EMAIL'}}) }}
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                            </div>
+                            
+                          
+
+                            <div class="form-group">
+                            {{ form_errors(form1.mdp) }}
+                            {{ form_widget(form1.mdp,{'attr': {'class': 'zmdi zmdi-account ' ,'placeholder' : 'MOT DE PASSE'}}) }}  
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                              
+                            </div>
+
+                            <div class="form-group">
+                             {{ form_errors(form1.confirm) }}
+                            {{ form_widget(form1.confirm,{'attr': {'class': 'zmdi zmdi-account ' ,'placeholder' : 'CONFIRMER MOT DE PASSE'}}) }}
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                            </div>
+                           
+
+
+                            <div class="form-group">
+                            {{ form_errors(form1.bday) }}
+                            {{ form_widget(form1.bday,{'attr': {'class': 'zmdi zmdi-account' , 'type':'date','placeholder' : 'Birthday'}}) }}   
+                            
+                           
+                            {{ form_errors(form1.genre) }}
+                            {{ form_widget(form1.genre,{'attr': {'class': 'zmdi zmdi-account ' , 'placeholder' : 'GENRE'}}) }}
+                             
+                            {{ form_errors(form1.type) }}
+                            {{ form_widget(form1.type,{'attr': {'class': 'zmdi zmdi-account ' , 'placeholder' : 'TYPE'}}) }}
+                            </div>
+
+                            <div class="form-group">
+                            {{ form_errors(form1.domaine) }}
+                            {{ form_widget(form1.domaine,{'attr': {'class': 'zmdi zmdi-account ' , 'placeholder' : 'DOMAINE'}}) }}
+                               <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            </div>
+                            
+                             <div class="form-group">
+                            {{ form_errors(form1.photo) }}
+                            {{ form_widget(form1.photo,{'attr': {'class': 'zmdi zmdi ' , 'placeholder' : 'PHOTO'}}) }}
+                               <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            </div>
+
+
+                            <div class="form-group form-button">
+                             {{ form_widget(form1.Inscrit,{'attr': {'class': 'form-submit '}}) }}
+                            </div>
+
+                            <div class="form-group">
+                             {{ form_errors(form1.ancien) }}
+                            {{ form_widget(form1.ancien) }}
+                              
+                            </div>
+                       {{ form_end(form1) }}
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="images/signup-image.jpg" alt="sing up image"></figure>
+                        <a href="{{path('security_log')}}" class="signup-image-link">J'ai déja un compte</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

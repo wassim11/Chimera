@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <h1>Récupérer MDP</h1>
+{{ form_errors(form) }}
+{{form(form,{'attr': {'novalidate': 'novalidate'}})}}
+
+{% endblock %}

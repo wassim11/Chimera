@@ -1,0 +1,46 @@
+<h2><center>Liste des Utilisateurs</center></h2>
+
+  <br> </br>  
+
+
+ <table class="table"  border=" 1px solid" align="center" border-collapse="collapse"
+           border-spacing="0"
+           width="100%"
+    >
+
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Email</th>
+        <th>Type</th>
+        <th>Date de naissance</th>
+        <th>Genre</th>
+        <th>Domaine</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    {% for Utilisateur in Utilisateurs %}
+<tr><td>
+
+{{ Utilisateur.nom}}
+   </td><td>
+   {{ Utilisateur.prenom}}
+   </td><td>
+{{Utilisateur.email}}
+   </td><td>
+   {{ Utilisateur.type}}
+   </td><td>
+   {{ Utilisateur.bday|date("m/d/y")}}
+   </td><td>
+   {{ Utilisateur.genre}}
+   </td><td>
+   {{ Utilisateur.domaine}}
+   </td>
+   </tr> 
+   </tbody>
+{% endfor %}
+  </table>   
+
+

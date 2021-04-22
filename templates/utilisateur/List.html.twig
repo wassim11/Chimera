@@ -1,0 +1,121 @@
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+<div class="pcoded-content">
+
+        <div class="pcoded-inner-content">
+<section id="main-content">
+      <section class="wrapper">
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+<div class="container">
+
+  </br>
+    </br>
+   <h2> LISTE DES UTILISATEURS </h2>
+     </br> 
+     </br>
+     <div>
+     <label> <h6>Trier en ordre: </h6></label> 
+     
+  <a href="{{path('TrierParDate2') }}">ASC </a>   
+  <a href="{{path('TrierParDate') }}">  DESC  </a>
+  </div>
+  </br>
+  
+
+<!-- <form method="post" action="{{ path('recherche') }}">
+    <label>Recherche</label>
+    <input type="text" name="search"><input type="submit" value="Recherche">
+</form>-->
+<form method="post">
+    <label> <h6>Recherche </h6></label>
+    <input type="text" name="AfficherClasse" onkeyup="myFunction()" placeholder="Nom (Ex:Med)" id="myInput">
+</form>
+
+ <table class="table" id="mytable">
+    <thead>
+      <tr>
+
+<th scope="row">Photo</th>
+<th scope="row">Nom</th>
+<th scope="row">Prenom</th>
+<th scope="row">Email</th>
+<th scope="row">Type</th>
+<th scope="row">Birthday</th>
+<th scope="row">Genre</th>
+<th scope="row">Domaine</th>
+
+
+<th scope="row">Options</th>
+
+</tr>
+</thead>
+    <tbody>
+
+{% for Utilisateur in Utilisateurs %}
+ </td><td> 
+   <a href="{{ path('UtilisateurList', {'id': Utilisateur.id}) }}"><img src="{{ asset ('uploads/' ~ Utilisateur.photo) }}" alt=""height="80px" width="80px"></a>
+</td><td>
+{{ Utilisateur.nom}}
+   </td><td>
+   {{ Utilisateur.prenom}}
+   </td><td>
+{{Utilisateur.email}}
+  
+   </td><td>
+   {{ Utilisateur.type}}
+   </td><td>
+   {{ Utilisateur.bday|date("m/d/y")}}
+   </td><td>
+   {{ Utilisateur.genre}}
+   </td><td>
+   {{ Utilisateur.domaine}}
+  
+   </td><td>
+   <a class="btn btn-success" href="{{path('showUser', {'id': Utilisateur.id})}}"> Consulter </a>
+   <a class="btn btn-danger" href="{{path('deleteUser', {'id': Utilisateur.id}) }}">  Supprimer  </a>
+
+   </tr> 
+   </tbody>
+
+{% endfor %}
+</table>
+{{ knp_pagination_render(Utilisateurs) }}
+<a class="btn btn-warning" href="{{path('pdf') }}">  Générer la liste des Utilisateurs(PDF)</a>
+</div>
+</div>
+
+
+<script>
+   function myFunction(){
+      var input,filter,table,tr,td,i,j,txtValue;
+      input= document.getElementById("myInput");
+      filter= input.value.toUpperCase();
+      table=document.getElementById("mytable");
+      tr = table.getElementsByTagName("tr");
+       for (i = 0; i < tr.length; i++) {
+                td= tr[i].getElementsByTagName("td")[2];
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                
+            }
+        }
+
+   }
+      </script>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="pcoded-content">
+ <div class="pcoded-inner-content">
+<section id="main-content">
+      <section class="wrapper">
+        <!-- BASIC FORM ELELEMNTS -->
+        <div class="row mt">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+<div class="container">
+
+  <h2> <center>Info Utilisateur</h2>
+
+  <br></br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="{{ path('UtilisateurList', {'id': Utilisateur.id}) }}"><img src="{{ asset ('uploads/' ~ Utilisateur.photo) }}"  alt=""height="200px" width="400px" ></a>
+
+ <br></br>
+<div class="container">
+<p>Nom: </p>
+  <div class="well">{{ Utilisateur.nom }}</div>
+  
+</div>
+
+  
+<div class="container">
+ <p>Prenom : </p>
+  <div class="well">{{ Utilisateur.prenom}}</div>
+ 
+</div>
+<div class="container">
+   <p>Birthday : </p>
+  <div class="well">{{ Utilisateur.bday|date("m/d/y")}}</div>
+  
+  <div class="container">
+<p>Genre: </p>
+  <div class="well"> {{ Utilisateur.genre }}</div>
+  
+</div>
+
+  
+<div class="container">
+ <p> Type : </p>
+  <div class="well">{{ Utilisateur.type}}</div>
+ 
+</div>
+<div class="container">
+   <p>Domaine : </p>
+  <div class="well">{{ Utilisateur.domaine}}</div>
+
+</div>
+<div class="container">
+   <p>Email : </p>
+  <div class="well">{{ Utilisateur.email}}</div>
+  
+</div>
+
+
+  
+  
+</div>
+  <br></br>
+  <div class="col-md-12">
+ 
+      
+        <a class="btn btn-danger" href="{{path('deleteUser', {'id': Utilisateur.id}) }}">  Supprimer  </a>
+       <a class="btn btn-info" href="{{path('UtilisateurList', {'id': Utilisateur.id}) }}">  Retour </a>
+     
+       </div>
+
+     
+
+ </div>
+ </div>
+</div>
+</section>
+</div>
+</div>
+{% endblock %}

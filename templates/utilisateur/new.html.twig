@@ -1,0 +1,16 @@
+
+{% extends 'basefront.html.twig' %}
+
+
+{% block body %}
+
+
+    <h1>Inscription</h1>
+{{ form_errors(form) }}
+{{form(form,{'attr': {'novalidate': 'novalidate'}})}}
+
+
+
+{% endblock %}
+
+
