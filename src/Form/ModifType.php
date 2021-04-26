@@ -33,7 +33,8 @@ class ModifType extends AbstractType
                 ],
             ],
         ])
-        ->add('domaine',TextType::class)
+        
+        
        
     ;
     }

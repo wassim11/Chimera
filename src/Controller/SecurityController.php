@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Controller;
+use App\Form\CoachType;
 use App\Form\LoginType;
+use App\Form\ModifType;
+use App\Form\PhotoType;
 use App\Form\ChangeType;
-
 use App\Entity\Utilisateur;
 use App\Form\UtilisateurType;
 use App\Form\RecuperermotdepasseType;
@@ -11,6 +13,7 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UtilisateurRepository;
 use Symfony\Component\HttpFoundation\Request;
+use MercurySeries\FlashyBundle\FlashyNotifier;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,120 +24,44 @@ use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationRequestHandler
 
 class SecurityController extends Controller
 {
-    /**
-     * @Route("/inscription", name="security_register")
-     */
-    public function registration(Request $request, EntityManagerInterface $manager)
-    {
-        $utilisateur = new Utilisateur();
-        $form = $this->createForm(UtilisateurType::class,$utilisateur);
-        $form->add('Ajouter', SubmitType::class);
-        $form->handleRequest($request);
-        
-
-        if($form->isSubmitted() && $form->isValid()){
-            $utilisateur->setMdp($utilisateur, $utilisateur->getMdp());
-            $manager->persist($utilisateur);
-            $manager->flush();
-            return $this->redirectToRoute('UtilisateurList');
-        }
-        //return $this->render('security/registration.html.twig',[
-            return $this->render('utilisateur/inscription.html.twig',[
-            'form'=> $form->createView()
-        ]);
-    }
-
-    //______________________________Test Cryptage_______________________________________________________________________________
-
-     /**
-     * @Route("/inscription1", name="security_inscri")
-     */
-    public function registration1(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
-    {
-        $utilisateur = new Utilisateur();
-        $form = $this->createForm(UtilisateurType::class,$utilisateur);
-        $form->add('Ajouter', SubmitType::class);
-        $form->handleRequest($request);
-        
-
-        if($form->isSubmitted() && $form->isValid()){
-
-            $hash = $encoder->encodePassword($utilisateur, $utilisateur->getMdp());
-            $utilisateur->setMdp($utilisateur, $utilisateur->getMdp());
-            $manager->persist($utilisateur);
-            $manager->flush();
-            return $this->redirectToRoute('security_con');
-        }
-        return $this->render('security/registration.html.twig',[
-            'form'=> $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/connexion", name="security_con")
-     */
-    public function login1(UtilisateurRepository $utilisateurRepository , SessionInterface $session,Request $request,UserPasswordEncoderInterface $encoder)
-    {
  
-        return $this->render('security/login.html.twig');
-        $hash = $encoder->encodePassword($_POST['_password']);
-        //if($utilisateurlogin->getMdp()==$hash){
-        $utilisateurlogin = new Utilisateur();
-        $em=$this->getDoctrine()->getManager();
-        $Utilisateur = $em->getRepository(Utilisateur::class)->findOneBy(array('email'=>$utilisateurlogin->getEmail(),'mdp'=>$utilisateurlogin->getMdp()));
-        if(is_null($Utilisateur)){
-            return $this->redirectToRoute('login');
-        }
-        else{
-            $session->set('Utilisateur',$Utilisateur);
-            return $this->redirectToRoute('UtilisateurList', [
-              'session'=>$session,
-            ]);
-        }
-        /*}
-        else{
-            $session->set('Utilisateur',$Utilisateur);
-            return $this->redirectToRoute('security_con', [
-              'session'=>$session,
-            ]);
-        }*/
-
-    }
-
-
-
- 
-
-
-
     /**
      * @Route("/login", name="security_log")
      */
-    public function login(UtilisateurRepository $utilisateurRepository , SessionInterface $session,Request $request)
+    public function login(UtilisateurRepository $utilisateurRepository , SessionInterface $session,Request $request,UserPasswordEncoderInterface $encoder)
     {
         $utilisateurlogin = new Utilisateur();
-        $connexionform=$this->createForm(LoginType::class, $utilisateurlogin);
-
-        
+        $connexionform=$this->createForm(LoginType::class, $utilisateurlogin);      
         $connexionform->add('Login',SubmitType::class);
         $connexionform->handleRequest($request);
-
         if ($connexionform->isSubmitted() && $connexionform->isValid()){
-            $em=$this->getDoctrine()->getManager();
-            $Utilisateur = $em->getRepository(Utilisateur::class)->findOneBy(array('email'=>$utilisateurlogin->getEmail(),'mdp'=>$utilisateurlogin->getMdp()));
-            //$user=$userRepository->findOneBy(array('email'=>$userlogin->getEmail(),'password'=>$utilisateurlogin->getPassword()));
-            if(is_null($Utilisateur)){
+            $em=$this->getDoctrine()->getManager();      
+            $Utilisateur = $em->getRepository(Utilisateur::class)->findOneBy(array('email'=>$utilisateurlogin->getEmail())); 
+            $mdp = $connexionform->get('mdp')->getData();
+            $hashBd=$Utilisateur->getMdp();
+          
+            
+            if(!password_verify($mdp,$hashBd)){
                 return $this->redirectToRoute('security_log', [
                     'form' => $connexionform->createView(),
                     
-                ]);
+                ]);          
             }
             else{
-                $session->set('Utilisateur',$Utilisateur);
-                return $this->redirectToRoute('index', [
-                  'session'=>$session,
-                ]);
-            }
+                $type=$Utilisateur->getType();
+                if($type==1){
+                    $session->set('Utilisateur',$Utilisateur);
+                    return $this->redirectToRoute('index', [
+                       'session'=>$session,
+                     ]);
+                }
+                else if ($type==2|| $type==3){
+                    $session->set('Utilisateur',$Utilisateur);
+                    return $this->redirectToRoute('indexfront', [
+                     'session'=>$session,
+                     ]);
+                }
+            }     
         }
         else{
             return $this->render('utilisateur/log.html.twig', [
@@ -142,13 +69,14 @@ class SecurityController extends Controller
                 
             ]);
         }
-        } 
+    }
+        
 
 
          /**
      * @Route("/recover", name="security_recover")
      */
-    public function recup(UtilisateurRepository $utilisateurRepository , SessionInterface $session,Request $request, \Swift_Mailer $mailer): Response
+    public function recup(UtilisateurRepository $utilisateurRepository , SessionInterface $session,UserPasswordEncoderInterface $encoder,Request $request, \Swift_Mailer $mailer): Response
     {
         $utilisateurrec = new Utilisateur();
         $recupererform=$this->createForm(RecuperermotdepasseType::class, $utilisateurrec);
@@ -164,12 +92,27 @@ class SecurityController extends Controller
                 ]);
             }
             else{
+                $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+                $pass = array();
+                $alphaLength = strlen($alphabet) - 1;
+                for ($i = 0; $i < 8; $i++) {
+                    $n = rand(0, $alphaLength);
+                    $pass[] = $alphabet[$n];
+                }
+                $generatedpass=implode($pass);
+                $nom=$Utilisateur->getNom();
                 $message = (new \Swift_Message('Utilisateur'))
                 ->setFrom('slowlife.testpi@gmail.com')
                 ->setTo($Utilisateur->getEmail())
-                ->setBody("votre mot de passe :".$Utilisateur->getMdp());
-                    $mailer->send($message) ;
+                ->setBody($this->renderView('Emails/resetPwd.html.twig',['generatedpass'=> $generatedpass, 'nom'=> $nom]) , 'text/html' );
 
+                $mailer->send($message) ;
+               
+
+                $hash = $encoder->encodePassword($Utilisateur, $generatedpass);
+                $Utilisateur->setMdp($hash);
+                $em->flush();
+                
                 return $this->redirectToRoute('security_log', [   
                 ]);
             }
@@ -183,43 +126,79 @@ class SecurityController extends Controller
     /**
      * @Route("/changepwd/{id}", name="change")
      */
-    public function changerpwd(Request $request, $id)
+    public function changerpwd(Request $request, $id, FlashyNotifier $flashy, SessionInterface $session, UserPasswordEncoderInterface $encoder)
     {
         $em=$this->getDoctrine()->getManager();
         $Utilisateur = $em->getRepository(Utilisateur::class)->find($id);
+        $hashbd = $Utilisateur->getMdp();     
         $form = $this->createForm(ChangeType::class, $Utilisateur);    
         $form->add('Modifier',SubmitType::class);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            $em->flush();         
-            return $this->redirectToRoute('UtilisateurList');
-        }
-        return $this->render('utilisateur/changepwd.html.twig', [
+        $ancien = $form->get('ancien')->getData();        
+        $mdp = $form->get('mdp')->getData(); 
+        
+        if ((password_verify($ancien,$hashbd)) && ($form->isSubmitted()) ) {  
+            if(strcmp($ancien,$mdp)==0){
+                $flashy->warning('Vous avez taper de nouveau un ancien MDP veuillez le remplacer pour plus de securité! ');
+                if($Utilisateur->getType()==3||$Utilisateur->getType()==2) {
+                    return $this->render('utilisateur/passwd.html.twig', [
                         'form' => $form->createView(),
-        ]);
-    }
-     /**
-     * @Route("/changepwd1/{id}", name="change1")
-     */
-    public function changerpwd1(Request $request, $id)
-    {
-        $em=$this->getDoctrine()->getManager();
-        $Utilisateur = $em->getRepository(Utilisateur::class)->find($id);
-        $form = $this->createForm(LoginType::class, $Utilisateur);    
-        $form->add('Changer',SubmitType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            $em->flush();         
-            return $this->redirectToRoute('change');
-        }
-        return $this->render('utilisateur/changepwd1.html.twig', [
+                        'session'=>$session,
+                    ]);
+                    
+                }
+                else if($Utilisateur->getType()==1) {
+                    return $this->render('utilisateur/passwdA.html.twig', [
                         'form' => $form->createView(),
-        ]);
+                        'session'=>$session,
+                    ]);
+                } 
+            }  
+            else{       
+            $hash = $encoder->encodePassword($Utilisateur,$mdp);
+            $Utilisateur->setMdp($hash);
+            $em->flush(); 
+            $flashy->success('Mot de Passe changé avec succès');    
+            if($Utilisateur->getType()==3||$Utilisateur->getType()==2) {
+                return $this->render('utilisateur/indexfront.html.twig', [  
+                    'session'=>$session,
+                    
+                ]);
+            }
+            else if($Utilisateur->getType()==1) {
+                return $this->render('utilisateur/index.html.twig', [ 
+                    'session'=>$session,
+                    
+                ]);
+            }
+           }
+        
+        }
+        else
+        {
+            $flashy->error('Verifiez votre ancien MDP');    
+            if($Utilisateur->getType()==3||$Utilisateur->getType()==2) {
+                return $this->render('utilisateur/passwd.html.twig', [
+                    'form' => $form->createView(),
+                    'session'=>$session,
+                ]);
+
+            }
+            else if($Utilisateur->getType()==1) {
+                return $this->render('utilisateur/passwdA.html.twig', [
+                    'form' => $form->createView(),
+                    'session'=>$session,
+                ]);
+            }  
+        }
+         
     }
+    
+    
      /**
      * @Route("/new", name="newcompte")
      */
-    public function inscrit(Request $request,\Swift_Mailer $mailer)
+    public function inscrit(Request $request,\Swift_Mailer $mailer,UserPasswordEncoderInterface $encoder)
     {
         $Utilisateur=new Utilisateur();
         $form=$this->createForm(UtilisateurType::Class,$Utilisateur);
@@ -232,13 +211,15 @@ class SecurityController extends Controller
         $file->move($this->getParameter('upload_directory'), $fileName);
         $Utilisateur->setPhoto($fileName);
         $em=$this->getDoctrine()->getManager();
+        $hash = $encoder->encodePassword($Utilisateur, $Utilisateur->getMdp());
+        $Utilisateur->setMdp($hash);
         $em->persist($Utilisateur);
         $em->flush();
         $message = (new \Swift_Message('Utilisateur'))
         ->setFrom('slowlife.testpi@gmail.com')
         ->setTo($Utilisateur->getEmail())
-        ->setBody("Bienvenu Mme/Mr ".$Utilisateur->getNom()."à Slowlife By Chimera");
-            $mailer->send($message) ;
+        ->setBody($this->renderView('Emails/confirmer.html.twig', ['nom'=> $$Utilisateur->getNom()]) , 'text/html' );
+        $mailer->send($message) ;
 
         return $this->redirectToRoute('security_log');
         }
@@ -247,4 +228,125 @@ class SecurityController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/up/{id}", name="upd")
+     */
+    public function up(SessionInterface $session,$id,FlashyNotifier $flashy,Request $request): Response
+    {      
+        $em=$this->getDoctrine()->getManager();
+        $Utilisateur = $em->getRepository(Utilisateur::class)->find($id);
+        if($Utilisateur->getType()==1 || $Utilisateur->getType()==2 ){
+        $form = $this->createForm(ModifType::class, $Utilisateur);
+        $form->add('Modifier',SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $em->flush(); 
+            $flashy->success('Profil modifé avec succès');
+            if($Utilisateur->getType()==1){     
+            return $this->render('utilisateur/updateAdmin.html.twig', [
+                'form' => $form->createView(),
+                "session"=>$session,
+            ]);
+            }
+            else {
+                return $this->render('utilisateur/updateUser.html.twig', [
+                    'form' => $form->createView(),
+                    "session"=>$session,
+                ]);
+            }
+        }
+        else{
+            $flashy->success('Vérifiez données');
+            if($Utilisateur->getType()==1){     
+                return $this->render('utilisateur/updateAdmin.html.twig', [
+                    'form' => $form->createView(),
+                    "session"=>$session,
+                ]);
+                }
+                else {
+                    return $this->render('utilisateur/updateUser.html.twig', [
+                        'form' => $form->createView(),
+                        "session"=>$session,
+                    ]);
+                }
+
+        }
+    }
+        else if($Utilisateur->getType()==3){
+            $form = $this->createForm(CoachType::class, $Utilisateur);
+            $form->add('Modifier',SubmitType::class);
+            $form->handleRequest($request);
+            if ($form->isSubmitted()) {
+                $em->flush();   
+                $flashy->success('Profil modifé avec succès');    
+                return $this->render('utilisateur/update.html.twig', [
+                   'form' => $form->createView(),
+                    "session"=>$session,
+                ]);
+            }
+            else{
+                $flashy->success('Vérifiez données');
+            return $this->render('utilisateur/update.html.twig', [
+                        'form' => $form->createView(),
+                        "session"=>$session,
+            ]);
+            }
+        }
+        
+    
+
 }
+     /**
+     * @Route("/changeph/{id}", name="changeph")
+     */
+    public function photo(SessionInterface $session,$id,Request $request): Response
+    {      
+        $em=$this->getDoctrine()->getManager();
+        $Utilisateur = $em->getRepository(Utilisateur::class)->find($id);    
+        $form = $this->createForm(PhotoType::class, $Utilisateur);
+        $form->add('Modifier',SubmitType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) { 
+            $em->flush();
+            if($Utilisateur->getType()==1){
+                return $this->render('utilisateur/updateAdmin.html.twig', [
+                    'form' => $form->createView(),
+                    "session"=>$session,    
+                ]);
+
+            }
+            else if ($Utilisateur->getType()==2){
+                return $this->render('utilisateur/updateUser.html.twig', [
+                    'form' => $form->createView(),
+                    "session"=>$session,    
+                ]);
+
+            }
+            else if ($Utilisateur->getType()==3){
+                return $this->render('utilisateur/update.html.twig', [
+                    'form' => $form->createView(),
+                    "session"=>$session,    
+                ]);
+
+            }
+        }
+        else{
+            if($Utilisateur->getType()==1){
+                return $this->render('utilisateur/updatePhotoA.html.twig', [
+                    'form' => $form->createView(),
+                    "session"=>$session,
+                 ]);
+
+            }
+            else if($Utilisateur->getType()==2||$Utilisateur->getType()==3){
+                return $this->render('utilisateur/updatePhoto.html.twig', [
+                    'form' => $form->createView(),
+                    "session"=>$session,
+                 ]);
+            }   
+    }}}
+        
+
+
+
+
